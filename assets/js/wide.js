@@ -14,7 +14,7 @@ $(function(){
   text1.onkeyup=function(e){ redrawTexts(); }
 
   $('#checkbox1').change(function(e){
-    redrawTexts(); 
+    redrawTexts();
   });
 
   function redrawTexts(){
