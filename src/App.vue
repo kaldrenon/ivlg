@@ -1,16 +1,18 @@
 <template>
   <div id="app">
     <p>foo</p>
-    <input-form />
+    <wide-logo-form />
   </div>
 </template>
 
 <script>
 import InputForm from '@/components/InputForm'
+import SquareLogoForm from '@/components/SquareLogoForm'
+import WideLogoForm from '@/components/WideLogoForm'
 
 export default {
   name: 'App',
-  components: { InputForm }
+  components: { InputForm, SquareLogoForm, WideLogoForm }
 }
 </script>
 

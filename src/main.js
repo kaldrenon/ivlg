@@ -2,20 +2,22 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import InputForm from '@/components/InputForm'
+import SquareLogoForm from '@/components/SquareLogoForm'
+import WideLogoForm from '@/components/WideLogoForm'
 import FormResponse from '@/components/FormResponse'
 // import Router from 'vue-router'
 
 Vue.config.productionTip = false
 
 const routes = {
-  '/': InputForm,
+  '/': WideLogoForm,
   '/thanks': FormResponse
 }
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  components: { InputForm, FormResponse },
+  components: { InputForm, SquareLogoForm, WideLogoForm, FormResponse },
   template: '<InputForm/>',
   data: {
     currentRoute: window.location.pathname
