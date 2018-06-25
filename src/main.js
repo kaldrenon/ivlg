@@ -18,7 +18,7 @@ const routes = {
 new Vue({
   el: '#app',
   components: { InputForm, SquareLogoForm, WideLogoForm, FormResponse },
-  template: '<InputForm/>',
+  template: '<WideLogoForm />',
   data: {
     currentRoute: window.location.pathname
   },
