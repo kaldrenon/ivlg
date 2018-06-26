@@ -4,7 +4,7 @@
       <h4>Enter Name Of School into text box.</h4>
       <img id="image-holder" src='../assets/image/IV-logo-wide2.svg'>
       <input
-        id="sourceText1"
+        id="txt-school"
         type="text"
         style="width:500px"
         placeholder="School Name"
@@ -102,6 +102,8 @@ export default {
     resetPage () {
       this.schoolName = ''
       this.redrawText()
+      var txt = document.getElementById('txt-school')
+      txt.focus()
     },
     downloadLogo () {
       console.log('not implemented yet')
