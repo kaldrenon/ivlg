@@ -1,6 +1,6 @@
 <template>
   <div id="#wrapper">
-    <h1>foo</h1>
+    <h1>InterVarsity Logo Generator</h1>
     <router-view/>
   </div>
 </template>
@@ -12,7 +12,16 @@ export default {
 </script>
 
 <style>
-#wrapper {
+div#wrapper {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+h1 {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

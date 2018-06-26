@@ -17,6 +17,13 @@ import router from './routes.js'
 // Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+    el.select()
+  }
+})
+
 /* eslint-disable no-new */
 var app = new Vue({
   el: '#app',
