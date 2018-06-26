@@ -1,31 +1,28 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import InputForm from '@/components/InputForm'
+
+// Components
+import App from '@/App'
 import SquareLogoForm from '@/components/SquareLogoForm'
 import WideLogoForm from '@/components/WideLogoForm'
-import FormResponse from '@/components/FormResponse'
-// import Router from 'vue-router'
 
+// Tooling
+import router from './routes.js'
+// import BootstrapVue from 'bootstrap-vue'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+//
+// // Config
+// Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
-const routes = {
-  '/': WideLogoForm,
-  '/thanks': FormResponse
-}
-
 /* eslint-disable no-new */
-new Vue({
+var app = new Vue({
   el: '#app',
-  components: { InputForm, SquareLogoForm, WideLogoForm, FormResponse },
-  template: '<WideLogoForm />',
-  data: {
-    currentRoute: window.location.pathname
-  },
-  computed: {
-    ViewComponent () {
-      return routes[this.currentRoute] || InputForm
-    }
-  },
-  render (h) { return h(this.ViewComponent) }
+  components: { App, SquareLogoForm, WideLogoForm },
+  router: router,
+  render: h => h(App)
 })
+
+console.log(app)

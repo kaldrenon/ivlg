@@ -1,14 +1,14 @@
 <template>
   <div id="container">
-    <a href="/" >back home</a>
 
     <h4>Enter Name Of School into text box.</h4>
     <input
       id="sourceText1"
       type="text"
       style="width:500px"
-      :value="schoolName"
-      v-on:change="redrawText()" />
+      placeholder="School Name"
+      v-model="schoolName"
+      v-on:keyup="redrawText()" />
 
     <span>
       Use "AT":
@@ -17,13 +17,14 @@
 
     <canvas id="drawingboard" width=700 height=130></canvas>
 
-    <a class="btn btn-primary" id="download" v-show="showButtons">
-      Download logo as a PNG
-    </a>
-
-    <a class="btn btn-secondary" id="reloadbtn" v-show="showButtons">
-      reset page
-    </a>
+    <div id="actions">
+      <a class="btn btn-primary" id="btn-download" v-show="showButtons">
+        Download logo as a PNG
+      </a>
+      <a class="btn btn-secondary" id="brn-reload" v-show="showButtons">
+        Reset Page
+      </a>
+    </div>
   </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
       textoffset: 155,
       textdrop: 120,
       atoffset: 0,
-      schoolName: 'Kennedy School of Government',
+      schoolName: '',
       submit: 'Submit',
       useAt: false,
       showButtons: false
@@ -88,3 +89,15 @@ export default {
   }
 }
 </script>
+
+<style>
+#container {
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#actions {
+  margin: 10px;
+}
+</style>
