@@ -1,43 +1,10 @@
 <template>
-  <div id="container">
-    <div id="wrapper">
-      <h4>Enter Name Of School into text box.</h4>
-      <img id="image-holder" src='../assets/image/IV-logo-wide2.svg'>
-      <input
-        id="txt-school"
-        type="text"
-        style="width:500px"
-        placeholder="School Name"
-        v-focus
-        v-model="schoolName"
-        v-on:keyup="redrawText()" />
-
-      <span>
-        Use "AT":
-        <input id="chk-at" type="checkbox" :value="useAt" />
-      </span>
-
-      <div id="canvas-container">
-        <canvas id="cnv-logo" width=700 height=130></canvas>
-      </div>
-
-      <div id="actions">
-        <a class="btn btn-primary"
-          id="btn-download"
-          v-on:click="downloadLogo()"
-          v-show="showButtons">
-          Download logo as a PNG
-        </a>
-        <a class="btn btn-secondary"
-          id="brn-reload"
-          v-on:click="resetPage()"
-          v-show="showButtons">
-          Reset Page
-        </a>
-      </div>
+  <div>
+    <img id="image-holder" src='../assets/image/IV-logo-wide2.svg'>
+    <div id="canvas-container">
+      <canvas id="cnv-logo" width=700 height=130></canvas>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -47,13 +14,12 @@ export default {
     return {
       src: '../assets/image/IV-logo-wide2.svg',
       textoffset: 155,
-      textdrop: 120,
-      atoffset: 0,
-      schoolName: 'Your School Name Here',
-      useAt: false,
-      showButtons: true
+      textdrop: 120
     }
   },
+  props: [
+    'schoolName', 'shortName'
+  ],
   mounted () {
     this.redrawText()
   },
@@ -66,16 +32,7 @@ export default {
       context.drawImage(img, 0, 0, 700, 120)
       context.fillStyle = '#939598'
 
-      this.showButtons = true
-
-      if (this.useAt) {
-        this.wrapText(context, 'AT', this.textoffset, this.textdrop - 5, 1900, '15px', 'Avenir')
-        this.atoffset = 20
-      } else {
-        this.atoffset = 0
-      }
-
-      this.wrapText(context, this.schoolName, this.textoffset + this.atoffset, this.textdrop, 700, '27px', 'Avenir') // 700/27px for wide, 500/60px for square
+      this.wrapText(context, this.schoolName, this.textoffset, this.textdrop, 700, '27px', 'Avenir') // 700/27px for wide, 500/60px for square
     },
     wrapText (context, text, x, y, maxWidth, fontSize, fontFace) {
       var words = text.split(' ')
@@ -99,12 +56,6 @@ export default {
       context.fillText(line, x, y)
       return y
     },
-    resetPage () {
-      this.schoolName = ''
-      this.redrawText()
-      var txt = document.getElementById('txt-school')
-      txt.focus()
-    },
     downloadLogo () {
       console.log('not implemented yet')
     }
@@ -113,30 +64,6 @@ export default {
 </script>
 
 <style>
-#container {
-  max-width: 840px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#actions {
-  margin: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-#actions .btn {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 2px;
-}
-
-#actions .btn:hover {
-  color: white;
-  background: #ccc;
-}
-
 #cnv-logo {
   border: 1px solid #eee;
   margin: 15px auto;
