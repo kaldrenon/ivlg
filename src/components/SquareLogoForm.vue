@@ -1,8 +1,8 @@
 <template>
   <div>
-    <img id="image-holder-square" src='../assets/image/IV-logo-square.svg'>
+    <h4>Round Logo with School Short Name</h4>
     <div id="canvas-container">
-      <canvas id="cnv-logo-square" width=300 height=300></canvas>
+      <canvas class='cnv-logo' id="cnv-logo-square" width=300 height=300></canvas>
     </div>
   </div>
 </template>
@@ -60,15 +60,4 @@ export default {
 </script>
 
 <style>
-#cnv-logo-square {
-  border: 1px solid #eee;
-  margin: 15px auto;
-  -moz-box-shadow:    3px 3px 3px 3px #ddd;
-  -webkit-box-shadow: 3px 3px 3px 3px #ddd;
-  box-shadow:         3px 3px 3px 3px #ddd;
-}
-
-#image-holder-square {
-  display: none;
-}
 </style>
