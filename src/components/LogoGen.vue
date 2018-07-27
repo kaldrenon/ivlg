@@ -1,7 +1,9 @@
 <template>
   <div id="container">
-    <img class="image-holder" id="image-holder-wide" src='../assets/image/IV-logo-wide2.svg'>
-    <img class="image-holder" id="image-holder-square" src='../assets/image/IV-logo-square.svg'>
+    <img class="image-holder" id="image-holder-wide" src='../assets/image/WideNormal.svg'>
+    <img class="image-holder" id="image-holder-wide-inverse" src='../assets/image/WideDarkBg.svg'>
+    <img class="image-holder" id="image-holder-square" src='../assets/image/SquareNormal.svg'>
+    <img class="image-holder" id="image-holder-square-inverse" src='../assets/image/SquareNormalDarkBg.svg'>
     <h4>Fill out the form below; logos using your inputs will be automatically generated for you.</h4>
     <label for="txt-school">School Full Name (e.g. University of College)</label>
     <input
@@ -38,35 +40,67 @@
     </div>
 
     <hr>
-    <h2>Logo Previews</h2>
+    <h1>Logo Previews</h1>
 
-    <wide-logo-form :schoolName="schoolName"></wide-logo-form>
-    <wide-logo-short :shortName="shortName"></wide-logo-short>
-    <square-logo-form :shortName="shortName"></square-logo-form>
+    <div class="two-columns">
+      <div id="default-logos">
+        <h2>Standard Logos</h2>
+        <wide-logo-form :config="wide" :schoolName="schoolName"></wide-logo-form>
+        <wide-logo-short :config="wide" :shortName="shortName"></wide-logo-short>
+        <square-logo-form :config="square" :shortName="shortName"></square-logo-form>
+      </div>
+      <div id="inverse-logos">
+        <h2>Logos for Dark Backgrounds</h2>
+        <wide-logo-inverse :config="wide" :schoolName="schoolName"></wide-logo-inverse>
+        <square-logo-inverse :config="square" :shortName="shortName"></square-logo-inverse>
+        <p>Note: the color you see here is just for demo purposes; the logos you download will have a transparent background.</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import SquareLogoForm from '@/components/SquareLogoForm'
+import SquareLogoInverse from '@/components/SquareLogoInverse'
 import WideLogoForm from '@/components/WideLogoForm'
+import WideLogoInverse from '@/components/WideLogoInverse'
 import WideLogoShortName from '@/components/WideLogoShortName'
 
 export default {
   name: 'LogoGen',
   components: {
     'wide-logo-form': WideLogoForm,
+    'wide-logo-inverse': WideLogoInverse,
     'wide-logo-short': WideLogoShortName,
+    'square-logo-inverse': SquareLogoInverse,
     'square-logo-form': SquareLogoForm
   },
   data () {
     return {
-      src: '../assets/image/IV-logo-wide2.svg',
-      textoffset: 155,
-      textdrop: 120,
-      atoffset: 0,
       schoolName: 'Your School Name Here',
-      shortName: '',
-      showButtons: true
+      shortName: 'UofC',
+      showButtons: true,
+      wide: {
+        textOffset: 10,
+        rightOffset: 390,
+        textDrop: 110,
+        canvasWidth: 400,
+        canvasHeight: 120,
+        logoHeight: 72,
+        logoStartX: 10,
+        logoStartY: 5,
+        logoWidth: 380
+      },
+      square: {
+        textOffset: 125,
+        textDrop: 235,
+        canvasWidth: 250,
+        canvasHeight: 250,
+        logoHeight: 200,
+        logoStartX: 25,
+        logoStartY: 10,
+        logoWidth: 200
+      }
     }
   },
   methods: {
@@ -151,4 +185,24 @@ hr {
   height: 1px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
+
+.two-columns {
+  width: 100%
+}
+
+.two-columns div {
+  width: 50%;
+}
+.two-columns div div {
+  display: block
+}
+
+#default-logos {
+  float: left;
+}
+
+#inverse-logos {
+  float: right;
+}
+
 </style>

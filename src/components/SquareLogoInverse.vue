@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h4>Round Logo with School Short Name</h4>
+    <h4>Round Logo with School Short Name (Inverse Color)</h4>
     <div id="canvas-container">
-      <canvas class='cnv-logo' id="cnv-logo-square" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
+      <canvas class='cnv-logo' id="cnv-logo-square-inverse" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SquareLogoForm',
+  name: 'SquareLogoInverse',
   data () {
     return this.config
   },
@@ -21,12 +21,19 @@ export default {
   },
   methods: {
     redrawText () {
-      var canvas = document.getElementById('cnv-logo-square')
+      console.log('square-inverse redraw')
+      var canvas = document.getElementById('cnv-logo-square-inverse')
       var context = canvas.getContext('2d')
-      var img = document.getElementById('image-holder-square')
-      context.clearRect(0, 0, canvas.width, canvas.height)
+      var img = document.getElementById('image-holder-square-inverse')
+
+      // TODO: Temporary workaround for inverted color background; update SVG and remove
+      context.rect(0, 0, 250, 250)
+      context.fillStyle = '#006680'
+      context.fill()
+
+      // context.clearRect(0, 0, canvas.width, canvas.height)
       context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
-      context.fillStyle = '#666'
+      context.fillStyle = 'white'
 
       this.wrapText(context, this.shortName, this.textOffset, this.textDrop, this.canvasWidth, '20px', 'Avenir')
     },

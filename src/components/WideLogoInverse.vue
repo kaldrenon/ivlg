@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h4>Wide Logo with School Full Name</h4>
+    <h4>Wide Logo with School Full Name (Inverse Color)</h4>
     <div id="canvas-container">
-      <canvas class="cnv-logo" id="cnv-logo-wide-full" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
+      <canvas class="cnv-logo" id="cnv-logo-wide-inverse" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'WideLogoForm',
+  name: 'WideLogoInverse',
   data () {
     return this.config
   },
@@ -21,14 +21,20 @@ export default {
   },
   methods: {
     redrawText () {
-      var canvas = document.getElementById('cnv-logo-wide-full')
+      var canvas = document.getElementById('cnv-logo-wide-inverse')
       var context = canvas.getContext('2d')
-      var img = document.getElementById('image-holder-wide')
+      var img = document.getElementById('image-holder-wide-inverse')
       context.clearRect(0, 0, canvas.width, canvas.height)
-      context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
-      context.fillStyle = '#666'
 
-      this.wrapText(context, this.schoolName.toUpperCase(), this.textOffset, this.textDrop, this.canvasWidth, '25px', 'Avenir')
+      // TODO: Temporary workaround for inverted color background; update SVG and remove
+      context.rect(0, 0, this.canvasWidth, this.canvasHeight)
+      context.fillStyle = '#006680'
+      context.fill()
+
+      context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
+      context.fillStyle = 'white'
+
+      this.wrapText(context, this.schoolName.toUpperCase(), this.textOffset, this.textDrop, this.canvasWidth, '27px', 'Avenir')
     },
     wrapText (context, text, x, y, maxWidth, fontSize, fontFace) {
       var words = text.split(' ')
