@@ -16,6 +16,16 @@ export default {
   props: [
     'config', 'schoolName', 'shortName'
   ],
+  computed: {
+    fileName: function () {
+      return 'intervarsity-' + this.schoolName + '-default.png'
+    },
+    imageData: function () {
+      var canvas = document.getElementById('cnv-logo-wide-full')
+      var data = canvas.toDataURL('image/png')
+      return data.substr(data.indexOf(',') + 1)
+    }
+  },
   mounted () {
     this.redrawText()
   },
@@ -51,9 +61,6 @@ export default {
       }
       context.fillText(line, x, y)
       return y
-    },
-    downloadLogo () {
-      console.log('not implemented yet')
     }
   }
 }

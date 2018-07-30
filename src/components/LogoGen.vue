@@ -26,12 +26,14 @@
 
     <div id="actions">
       <a class="btn btn-primary"
+         href="#"
          id="btn-download"
-         v-on:click="downloadLogo()"
+         v-on:click="downloadLogos()"
          v-show="showButtons">
         Download logo as a PNG
       </a>
       <a class="btn btn-secondary"
+         href="#"
          id="brn-reload"
          v-on:click="resetPage()"
          v-show="showButtons">
@@ -65,6 +67,8 @@ import SquareLogoInverse from '@/components/SquareLogoInverse'
 import WideLogoForm from '@/components/WideLogoForm'
 import WideLogoInverse from '@/components/WideLogoInverse'
 import WideLogoShortName from '@/components/WideLogoShortName'
+import JSZip from 'jszip'
+import { saveAs } from 'file-saver/FileSaver'
 
 export default {
   name: 'LogoGen',
@@ -111,6 +115,17 @@ export default {
         child.redrawText()
       }
     },
+    downloadLogos () {
+      var zip = new JSZip()
+      for (let child of this.$children) {
+        console.log(child.fileName)
+        console.log(child.imageData)
+        zip.file(child.fileName, child.imageData, { base64: true })
+      }
+      zip.generateAsync({ type: 'blob' }).then(function (content) {
+        saveAs(content, 'intervarsity-logos.zip')
+      })
+    },
     resetPage () {
       this.schoolName = ''
       this.redrawText()
@@ -123,7 +138,7 @@ export default {
 
 <style>
 div#container {
-  max-width: 840px;
+  max-width: 860px;
   margin-left: auto;
   margin-right: auto;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -135,7 +150,7 @@ div#container {
 
 div#container h4 {
   margin: 0;
-  margin-top: 25px;
+  margin-top: 40px;
 }
 
 div#container input, div#container label {
@@ -143,19 +158,24 @@ div#container input, div#container label {
   text-align: left;
 }
 
+div#container label {
+  margin-top: 5px;
+}
 div#container input {
   margin-bottom: 10px;
   padding: 3px 0;
 }
 
 #actions {
-  margin: 10px;
+  margin: 20px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
 
 #actions .btn {
+  text-decoration: none;
+  color: #2c3e50;
   border: 1px solid #ccc;
   padding: 10px;
   margin: 2px;
@@ -163,7 +183,10 @@ div#container input {
 
 #actions .btn:hover {
   color: white;
-  background: #ccc;
+  background: #006680;
+  -moz-box-shadow:    1px 1px 1px 1px #ddd;
+  -webkit-box-shadow: 1px 1px 1px 1px #ddd;
+  box-shadow:         1px 1px 1px 1px #ddd;
 }
 
 .cnv-logo {
@@ -180,7 +203,7 @@ div#container input {
 }
 
 hr {
-  margin-top: 40px;
+  margin-top: 50px;
   border: 0;
   height: 1px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
@@ -191,8 +214,9 @@ hr {
 }
 
 .two-columns div {
-  width: 50%;
+  width: 420px;
 }
+
 .two-columns div div {
   display: block
 }

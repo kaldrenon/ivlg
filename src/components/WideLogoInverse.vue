@@ -16,6 +16,16 @@ export default {
   props: [
     'config', 'schoolName', 'shortName'
   ],
+  computed: {
+    fileName: function () {
+      return 'intervarsity-' + this.schoolName + '-inverse.png'
+    },
+    imageData: function () {
+      var canvas = document.getElementById('cnv-logo-wide-inverse')
+      var data = canvas.toDataURL('image/png')
+      return data.substr(data.indexOf(',') + 1)
+    }
+  },
   mounted () {
     this.redrawText()
   },
@@ -66,4 +76,7 @@ export default {
 </script>
 
 <style>
+#cnv-logo-wide-inverse {
+  background: #006680;
+}
 </style>

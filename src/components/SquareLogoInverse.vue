@@ -16,6 +16,16 @@ export default {
   props: [
     'config', 'schoolName', 'shortName'
   ],
+  computed: {
+    fileName: function () {
+      return 'intervarsity-' + this.shortName + '-inverse.png'
+    },
+    imageData: function () {
+      var canvas = document.getElementById('cnv-logo-square-inverse')
+      var data = canvas.toDataURL('image/png')
+      return data.substr(data.indexOf(',') + 1)
+    }
+  },
   mounted () {
     this.redrawText()
   },
@@ -25,11 +35,6 @@ export default {
       var canvas = document.getElementById('cnv-logo-square-inverse')
       var context = canvas.getContext('2d')
       var img = document.getElementById('image-holder-square-inverse')
-
-      // TODO: Temporary workaround for inverted color background; update SVG and remove
-      context.rect(0, 0, 250, 250)
-      context.fillStyle = '#006680'
-      context.fill()
 
       // context.clearRect(0, 0, canvas.width, canvas.height)
       context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
@@ -48,4 +53,7 @@ export default {
 </script>
 
 <style>
+#cnv-logo-square-inverse {
+  background: #006680;
+}
 </style>

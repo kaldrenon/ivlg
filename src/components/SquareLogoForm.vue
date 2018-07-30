@@ -16,6 +16,16 @@ export default {
   props: [
     'config', 'schoolName', 'shortName'
   ],
+  computed: {
+    fileName: function () {
+      return 'intervarsity-' + this.shortName + '-default.png'
+    },
+    imageData: function () {
+      var canvas = document.getElementById('cnv-logo-square')
+      var data = canvas.toDataURL('image/png')
+      return data.substr(data.indexOf(',') + 1)
+    }
+  },
   mounted () {
     this.redrawText()
   },
