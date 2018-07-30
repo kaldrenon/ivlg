@@ -31,37 +31,41 @@ export default {
   },
   methods: {
     redrawText () {
-      var canvas = document.getElementById('cnv-logo-wide-inverse')
-      var context = canvas.getContext('2d')
-      var img = document.getElementById('image-holder-wide-inverse')
-      context.clearRect(0, 0, canvas.width, canvas.height)
+      var context = document.getElementById('cnv-logo-wide-inverse').getContext('2d')
+      var text = this.schoolName.toUpperCase()
+      var fontMax = 26
+      var fontMin = 20
+      var tooLong = true
 
-      context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
+      // Clear the canvas and draw the base logo
+      context.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+      context.drawImage(
+        document.getElementById('image-holder-wide-inverse'),
+        this.logoStartX,
+        this.logoStartY,
+        this.logoWidth,
+        this.logoHeight)
       context.fillStyle = 'white'
 
-      this.wrapText(context, this.schoolName.toUpperCase(), this.textOffset, this.textDrop, this.canvasWidth, '27px', 'Avenir')
-    },
-    wrapText (context, text, x, y, maxWidth, fontSize, fontFace) {
-      var words = text.split(' ')
-      var line = ''
-      var lineHeight = fontSize
+      // Step down permissible font sizes; if the text fits, draw and break
+      for (var n = fontMax; n >= fontMin; n--) {
+        context.font = n + 'px Avenir'
 
-      context.font = fontSize + ' ' + fontFace
-
-      for (var n = 0; n < words.length; n++) {
-        var testLine = line + words[n] + ' '
-        var metrics = context.measureText(testLine)
-        var testWidth = metrics.width
-        if (testWidth > maxWidth) {
-          context.fillText(line, x, y)
-          line = words[n] + ' '
-          y += lineHeight
-        } else {
-          line = testLine
+        var metrics = context.measureText(text)
+        if (metrics.width < this.logoWidth) {
+          tooLong = false
+          context.fillText(text, this.textOffset, this.textDrop)
+          break
         }
       }
-      context.fillText(line, x, y)
-      return y
+
+      // Notify user when they overflow at min font size
+      if (tooLong) {
+        document.getElementById('school-name-field').classList.add('error')
+      } else {
+        document.getElementById('school-name-field').classList.remove('error')
+      }
+      return this.textDrop
     },
     downloadLogo () {
       console.log('not implemented yet')

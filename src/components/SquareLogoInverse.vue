@@ -31,12 +31,11 @@ export default {
   },
   methods: {
     redrawText () {
-      console.log('square-inverse redraw')
       var canvas = document.getElementById('cnv-logo-square-inverse')
       var context = canvas.getContext('2d')
       var img = document.getElementById('image-holder-square-inverse')
 
-      // context.clearRect(0, 0, canvas.width, canvas.height)
+      context.clearRect(0, 0, canvas.width, canvas.height)
       context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
       context.fillStyle = 'white'
 

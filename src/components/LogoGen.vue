@@ -1,5 +1,6 @@
 <template>
   <div id="container">
+    <help-box></help-box>
     <img class="image-holder" id="image-holder-wide" src='../assets/image/WideNormal.svg'>
     <img class="image-holder" id="image-holder-wide-inverse" src='../assets/image/WideDarkBg.svg'>
     <img class="image-holder" id="image-holder-square" src='../assets/image/SquareNormal.svg'>
@@ -33,7 +34,7 @@
          id="btn-download"
          v-on:click="downloadLogos()"
          v-show="showButtons">
-        Download logo as a PNG
+        Download ZIP
       </a>
       <a class="btn btn-secondary"
          href="#"
@@ -70,6 +71,7 @@ import SquareLogoInverse from '@/components/SquareLogoInverse'
 import WideLogoForm from '@/components/WideLogoForm'
 import WideLogoInverse from '@/components/WideLogoInverse'
 import WideLogoShortName from '@/components/WideLogoShortName'
+import HelpBox from '@/components/HelpBox'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver/FileSaver'
 
@@ -80,7 +82,8 @@ export default {
     'wide-logo-inverse': WideLogoInverse,
     'wide-logo-short': WideLogoShortName,
     'square-logo-inverse': SquareLogoInverse,
-    'square-logo-form': SquareLogoForm
+    'square-logo-form': SquareLogoForm,
+    'help-box': HelpBox
   },
   data () {
     return {
@@ -131,6 +134,7 @@ export default {
     },
     resetPage () {
       this.schoolName = ''
+      this.shortName = ''
       this.redrawText()
       var txt = document.getElementById('txt-school')
       txt.focus()
@@ -141,6 +145,7 @@ export default {
 
 <style>
 div#container {
+  position: relative;
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;

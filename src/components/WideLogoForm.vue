@@ -31,37 +31,41 @@ export default {
   },
   methods: {
     redrawText () {
-      var canvas = document.getElementById('cnv-logo-wide-full')
-      var context = canvas.getContext('2d')
-      var img = document.getElementById('image-holder-wide')
-      context.clearRect(0, 0, canvas.width, canvas.height)
-      context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
-      context.fillStyle = '#666'
-
-      this.wrapText(context, this.schoolName.toUpperCase(), this.textOffset, this.textDrop, this.canvasWidth)
-    },
-    wrapText (context, text, x, y, maxWidth) {
+      var context = document.getElementById('cnv-logo-wide-full').getContext('2d')
+      var text = this.schoolName.toUpperCase()
       var fontMax = 26
       var fontMin = 20
-
       var tooLong = true
+
+      // Clear the canvas and draw the base logo
+      context.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+      context.drawImage(
+        document.getElementById('image-holder-wide'),
+        this.logoStartX,
+        this.logoStartY,
+        this.logoWidth,
+        this.logoHeight)
+      context.fillStyle = '#666'
+
+      // Step down permissible font sizes; if the text fits, draw and break
       for (var n = fontMax; n >= fontMin; n--) {
         context.font = n + 'px Avenir'
+
         var metrics = context.measureText(text)
-        console.log('n: ' + n + ' width: ' + metrics.width)
         if (metrics.width < this.logoWidth) {
           tooLong = false
-          context.fillText(text, x, y)
+          context.fillText(text, this.textOffset, this.textDrop)
           break
         }
       }
 
+      // Notify user when they overflow at min font size
       if (tooLong) {
         document.getElementById('school-name-field').classList.add('error')
       } else {
         document.getElementById('school-name-field').classList.remove('error')
       }
-      return y
+      return this.textDrop
     }
   }
 }
