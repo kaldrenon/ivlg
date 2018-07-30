@@ -38,28 +38,29 @@ export default {
       context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
       context.fillStyle = '#666'
 
-      this.wrapText(context, this.schoolName.toUpperCase(), this.textOffset, this.textDrop, this.canvasWidth, '25px', 'Avenir')
+      this.wrapText(context, this.schoolName.toUpperCase(), this.textOffset, this.textDrop, this.canvasWidth)
     },
-    wrapText (context, text, x, y, maxWidth, fontSize, fontFace) {
-      var words = text.split(' ')
-      var line = ''
-      var lineHeight = fontSize
+    wrapText (context, text, x, y, maxWidth) {
+      var fontMax = 26
+      var fontMin = 20
 
-      context.font = fontSize + ' ' + fontFace
-
-      for (var n = 0; n < words.length; n++) {
-        var testLine = line + words[n] + ' '
-        var metrics = context.measureText(testLine)
-        var testWidth = metrics.width
-        if (testWidth > maxWidth) {
-          context.fillText(line, x, y)
-          line = words[n] + ' '
-          y += lineHeight
-        } else {
-          line = testLine
+      var tooLong = true
+      for (var n = fontMax; n >= fontMin; n--) {
+        context.font = n + 'px Avenir'
+        var metrics = context.measureText(text)
+        console.log('n: ' + n + ' width: ' + metrics.width)
+        if (metrics.width < this.logoWidth) {
+          tooLong = false
+          context.fillText(text, x, y)
+          break
         }
       }
-      context.fillText(line, x, y)
+
+      if (tooLong) {
+        document.getElementById('school-name-field').classList.add('error')
+      } else {
+        document.getElementById('school-name-field').classList.remove('error')
+      }
       return y
     }
   }

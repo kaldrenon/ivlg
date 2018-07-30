@@ -5,15 +5,18 @@
     <img class="image-holder" id="image-holder-square" src='../assets/image/SquareNormal.svg'>
     <img class="image-holder" id="image-holder-square-inverse" src='../assets/image/SquareNormalDarkBg.svg'>
     <h4>Fill out the form below; logos using your inputs will be automatically generated for you.</h4>
-    <label for="txt-school">School Full Name (e.g. University of College)</label>
-    <input
-      id="txt-school"
-      type="text"
-      style="width:400px"
-      placeholder="School Name"
-      v-focus
-      v-model="schoolName"
-      v-on:keyup="redrawText()" />
+    <div id="school-name-field">
+      <label for="txt-school">School Full Name (e.g. University of College)</label>
+      <input
+        id="txt-school"
+        type="text"
+        style="width:400px"
+        placeholder="School Name"
+        v-focus
+        v-model="schoolName"
+        v-on:keyup="redrawText()" />
+      <span class="error-message">Sorry, that name is too long.</span>
+    </div>
 
     <label for="txt-school-short">School Short Name (e.g. UofC)</label>
     <input
@@ -164,6 +167,19 @@ div#container label {
 div#container input {
   margin-bottom: 10px;
   padding: 3px 0;
+}
+
+#school-name-field .error-message {
+  display: none;
+}
+
+#school-name-field.error .error-message {
+  display: inline;
+  color: red;
+}
+
+#school-name-field.error {
+  background: #fee;
 }
 
 #actions {
