@@ -36,11 +36,6 @@ export default {
       var img = document.getElementById('image-holder-wide-inverse')
       context.clearRect(0, 0, canvas.width, canvas.height)
 
-      // TODO: Temporary workaround for inverted color background; update SVG and remove
-      context.rect(0, 0, this.canvasWidth, this.canvasHeight)
-      context.fillStyle = '#006680'
-      context.fill()
-
       context.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
       context.fillStyle = 'white'
 
