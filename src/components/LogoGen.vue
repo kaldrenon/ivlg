@@ -85,7 +85,7 @@
     <div class="two-columns">
       <div id="default-logos">
         <h2>Standard Logos</h2>
-        <wide-logo-form :config="wide" :schoolName="schoolName"></wide-logo-form>
+        <wide-logo-form :config="wide" :schoolName="schoolName" :multiline="multilineOn"></wide-logo-form>
         <wide-logo-short :config="wide" :shortName="shortName"></wide-logo-short>
         <square-logo-form :config="square" :shortName="shortName"></square-logo-form>
       </div>
@@ -162,6 +162,7 @@ export default {
       if (this.multilineOn) {
         document.getElementById('txt-line-two').focus()
       }
+      this.redrawText()
     },
     redrawText () {
       this.showButtons = true

@@ -14,7 +14,7 @@ export default {
     return this.config
   },
   props: [
-    'config', 'schoolName', 'shortName'
+    'config', 'multiline', 'schoolName', 'shortName'
   ],
   computed: {
     fileName: function () {
@@ -31,10 +31,11 @@ export default {
   },
   methods: {
     redrawText () {
+      console.log('multiline: ' + this.multiline)
       var context = document.getElementById('cnv-logo-wide-full').getContext('2d')
       var text = this.schoolName.toUpperCase()
-      var fontMax = 26
-      var fontMin = 20
+      // var fontMax = 26
+      // var fontMin = 20
       var tooLong = true
 
       // Clear the canvas and draw the base logo
@@ -48,7 +49,7 @@ export default {
       context.fillStyle = '#666'
 
       // Step down permissible font sizes; if the text fits, draw and break
-      for (var n = fontMax; n >= fontMin; n--) {
+      for (var n = this.fontMax; n >= this.fontMin; n--) {
         context.font = n + 'px Avenir'
 
         var metrics = context.measureText(text)
