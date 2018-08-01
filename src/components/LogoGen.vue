@@ -41,7 +41,6 @@
         placeholder="School Name"
         v-model="schoolName"
         v-on:keyup="redrawText()" />
-      <span class="error-message">Sorry, that name is too long.</span>
 
       <div id="multiline-container">
         <label for="txt-line-two">Second Text Line</label>
@@ -52,6 +51,7 @@
           v-model="secondLine"
           v-on:keyup="redrawText()" />
       </div>
+      <span class="error-message">Sorry, that name is too long.</span>
     </div>
     <label for="txt-school-short">School Short Name (e.g. UofC)</label>
     <input
@@ -85,13 +85,13 @@
     <div class="two-columns">
       <div id="default-logos">
         <h2>Standard Logos</h2>
-        <wide-logo-form :config="wide" :schoolName="schoolName" :multiline="multilineOn"></wide-logo-form>
+        <wide-logo-form :config="wide" :schoolName="schoolName" :secondLine="secondLine" :multiline="multilineOn"></wide-logo-form>
         <wide-logo-short :config="wide" :shortName="shortName"></wide-logo-short>
         <square-logo-form :config="square" :shortName="shortName"></square-logo-form>
       </div>
       <div id="inverse-logos">
         <h2>Logos for Dark Backgrounds</h2>
-        <wide-logo-inverse :config="wide" :schoolName="schoolName"></wide-logo-inverse>
+        <wide-logo-inverse :config="wide" :schoolName="schoolName" :secondLine="secondLine" :multiline="multilineOn"></wide-logo-inverse>
         <square-logo-inverse :config="square" :shortName="shortName"></square-logo-inverse>
         <p>Note: the color you see here is just for demo purposes; the logos you download will have a transparent background.</p>
       </div>
@@ -140,8 +140,9 @@ export default {
         logoStartX: 10,
         logoStartY: 5,
         logoWidth: 380,
-        lineTwoDrop: 115,
-        lineTwoFontSize: 12
+        lineOneDrop: 94,
+        lineTwoDrop: 110,
+        lineTwoFontSize: 14
       },
       square: {
         textOffset: 125,

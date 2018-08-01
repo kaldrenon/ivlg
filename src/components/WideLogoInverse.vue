@@ -14,7 +14,7 @@ export default {
     return this.config
   },
   props: [
-    'config', 'schoolName', 'shortName'
+    'config', 'multiline', 'schoolName', 'secondLine', 'shortName'
   ],
   computed: {
     fileName: function () {
@@ -33,9 +33,8 @@ export default {
     redrawText () {
       var context = document.getElementById('cnv-logo-wide-inverse').getContext('2d')
       var text = this.schoolName.toUpperCase()
-      var fontMax = 26
-      var fontMin = 20
       var tooLong = true
+      var metrics
 
       // Clear the canvas and draw the base logo
       context.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
@@ -47,15 +46,28 @@ export default {
         this.logoHeight)
       context.fillStyle = 'white'
 
-      // Step down permissible font sizes; if the text fits, draw and break
-      for (var n = fontMax; n >= fontMin; n--) {
-        context.font = n + 'px Avenir'
+      if (this.multiline) {
+        var textTwo = this.secondLine.toUpperCase()
+        context.font = this.lineTwoFontSize + 'px Avenir'
+        metrics = context.measureText(text)
+        var metricsTwo = context.measureText(textTwo)
 
-        var metrics = context.measureText(text)
-        if (metrics.width < this.logoWidth) {
+        if (metrics.width < this.logoWidth && metricsTwo.width < this.logoWidth) {
           tooLong = false
-          context.fillText(text, this.textOffset, this.textDrop)
-          break
+          context.fillText(text, this.textOffset, this.lineOneDrop)
+          context.fillText(textTwo, this.textOffset, this.lineTwoDrop)
+        }
+      } else {
+      // Step down permissible font sizes; if the text fits, draw and break
+        for (var n = this.fontMax; n >= this.fontMin; n--) {
+          context.font = n + 'px Avenir'
+
+          metrics = context.measureText(text)
+          if (metrics.width < this.logoWidth) {
+            tooLong = false
+            context.fillText(text, this.textOffset, this.textDrop)
+            break
+          }
         }
       }
 
