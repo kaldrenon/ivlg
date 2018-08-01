@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #cnv-logo {
   border: 1px solid #eee;
   margin: 15px auto;

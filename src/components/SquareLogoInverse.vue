@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #cnv-logo-square-inverse {
   background: #006680;
 }

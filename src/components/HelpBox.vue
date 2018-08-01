@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #help-container {
   float: right;
   border: 1px solid #aaa;
