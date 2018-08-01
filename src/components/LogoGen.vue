@@ -100,14 +100,19 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import SquareLogoForm from '@/components/SquareLogoForm'
 import SquareLogoInverse from '@/components/SquareLogoInverse'
 import WideLogoForm from '@/components/WideLogoForm'
 import WideLogoInverse from '@/components/WideLogoInverse'
 import WideLogoShortName from '@/components/WideLogoShortName'
 import HelpBox from '@/components/HelpBox'
+
+import ajax from 'vuejs-ajax'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver/FileSaver'
+
+Vue.use(ajax)
 
 export default {
   name: 'LogoGen',
@@ -192,6 +197,14 @@ export default {
         }
       }
       zip.generateAsync({ type: 'blob' }).then(function (content) {
+        Vue.ajax.post('http://localhost:3000/', {
+          file: content,
+          submission: submissionInfo
+        }).then(function (successResposne) {
+          console.log(successResposne)
+        }, function (errorResponse) {
+          console.log(errorResponse)
+        })
         saveAs(content, 'intervarsity-logos.zip')
       })
     },

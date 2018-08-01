@@ -6,6 +6,7 @@ import Vue from 'vue'
 import App from '@/App'
 import SquareLogoForm from '@/components/SquareLogoForm'
 import WideLogoForm from '@/components/WideLogoForm'
+import ajax from 'vuejs-ajax'
 
 // Tooling
 import router from './routes.js'
@@ -16,6 +17,7 @@ import router from './routes.js'
 // // Config
 // Vue.use(BootstrapVue)
 Vue.config.productionTip = false
+Vue.use(ajax)
 
 Vue.directive('focus', {
   inserted: function (el) {
