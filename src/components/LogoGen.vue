@@ -6,19 +6,53 @@
     <img class="image-holder" id="image-holder-square" src='../assets/image/SquareNormal.svg'>
     <img class="image-holder" id="image-holder-square-inverse" src='../assets/image/SquareNormalDarkBg.svg'>
     <h4>Fill out the form below; logos using your inputs will be automatically generated for you.</h4>
+
+    <label for="txt-school">Your Name (required)</label>
+    <input
+      id="txt-name"
+      type="text"
+      style="width:400px"
+      placeholder="Your Name (required)"
+      v-focus
+      v-model="userName" />
+
+    <label for="txt-school">Email Address (required)</label>
+    <input
+      id="txt-email"
+      type="text"
+      style="width:400px"
+      placeholder="name@intervarsity.org"
+      v-model="userEmail" />
+
     <div id="school-name-field">
+      <button
+        type="checkbox"
+        id="multiline-on"
+        name="multiline-on"
+        v-on:click="toggleMultiline()">
+        Add Second Text Line
+      </button>
+
       <label for="txt-school">School Full Name (e.g. University of College)</label>
       <input
         id="txt-school"
         type="text"
         style="width:400px"
         placeholder="School Name"
-        v-focus
         v-model="schoolName"
         v-on:keyup="redrawText()" />
       <span class="error-message">Sorry, that name is too long.</span>
-    </div>
 
+      <div id="multiline-container">
+        <label for="txt-line-two">Second Text Line</label>
+        <input
+          id="txt-line-two"
+          type="text"
+          style="width:400px"
+          v-model="secondLine"
+          v-on:keyup="redrawText()" />
+      </div>
+    </div>
     <label for="txt-school-short">School Short Name (e.g. UofC)</label>
     <input
       id="txt-school-short"
@@ -89,17 +123,25 @@ export default {
     return {
       schoolName: 'Your School Name Here',
       shortName: 'UofC',
+      userName: '',
+      userEmail: '',
       showButtons: true,
+      multilineOn: false,
+      secondLine: '',
       wide: {
         textOffset: 10,
         rightOffset: 390,
         textDrop: 110,
+        fontMax: 26,
+        fontMin: 20,
         canvasWidth: 400,
         canvasHeight: 120,
         logoHeight: 72,
         logoStartX: 10,
         logoStartY: 5,
-        logoWidth: 380
+        logoWidth: 380,
+        lineTwoDrop: 115,
+        lineTwoFontSize: 12
       },
       square: {
         textOffset: 125,
@@ -114,6 +156,13 @@ export default {
     }
   },
   methods: {
+    toggleMultiline () {
+      this.multilineOn = !this.multilineOn
+      document.getElementById('multiline-container').classList.toggle('enabled')
+      if (this.multilineOn) {
+        document.getElementById('txt-line-two').focus()
+      }
+    },
     redrawText () {
       this.showButtons = true
 
@@ -123,16 +172,30 @@ export default {
     },
     downloadLogos () {
       var zip = new JSZip()
+
+      // Record data about the submission in json
+      var timestamp = new Date()
+      var submissionInfo = {
+        name: this.userName,
+        email: this.userEmail,
+        schoolName: this.schoolName,
+        shortName: this.shortName,
+        timestamp: timestamp.toJSON()
+      }
+      zip.file('submission.json', JSON.stringify(submissionInfo, null, 2))
+
       for (let child of this.$children) {
-        console.log(child.fileName)
-        console.log(child.imageData)
-        zip.file(child.fileName, child.imageData, { base64: true })
+        if (child.fileName) {
+          zip.file(child.fileName, child.imageData, { base64: true })
+        }
       }
       zip.generateAsync({ type: 'blob' }).then(function (content) {
         saveAs(content, 'intervarsity-logos.zip')
       })
     },
     resetPage () {
+      this.userName = ''
+      this.userEmail = ''
       this.schoolName = ''
       this.shortName = ''
       this.redrawText()
@@ -169,9 +232,22 @@ div#container input, div#container label {
 div#container label {
   margin-top: 5px;
 }
+
 div#container input {
   margin-bottom: 10px;
   padding: 3px 0;
+}
+
+button#multiline-on {
+  float: right;
+}
+
+div#container #multiline-container {
+  display: none;
+}
+
+div#container #multiline-container.enabled {
+  display: block;
 }
 
 #school-name-field .error-message {
