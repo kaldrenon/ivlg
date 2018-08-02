@@ -201,27 +201,26 @@ export default {
         console.log('zip generated')
         console.log(content)
 
-        Vue.ajax.post(
-          // 'http://localhost:3000/',
-          'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload',
-          // Data
-          {
-            submission: submissionInfo
-          },
-          // Options
-          {
-            headers: {
-              Body: content,
-              ContentEncoding: 'base64',
-              ContentType: 'application/zip',
-              Key: timestamp + '.zip'
-            }
-          }
-        ).then(function (successResponse) {
-          console.log('zip POST success: ' + successResponse)
-        }, function (errorResponse) {
-          console.log('zip POST error: ' + errorResponse)
-        })
+        // var url = 'http://localhost:3000/'
+        var url = 'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload'
+        var oReq = new XMLHttpRequest()
+        oReq.open('POST', url, true)
+        oReq.send(content)
+
+        // Vue.ajax.post(url, { submission: submissionInfo, zip: content },
+        //   {
+        //     headers: {
+        //       Body: content,
+        //       ContentEncoding: 'base64',
+        //       ContentType: 'application/zip',
+        //       Key: 'logos.zip'
+        //     }
+        //   }
+        // ).then(function (successResponse) {
+        //   console.log('zip POST success: ' + successResponse)
+        // }, function (errorResponse) {
+        //   console.log('zip POST error: ' + errorResponse)
+        // })
         saveAs(content, 'intervarsity-logos.zip')
       })
     },
