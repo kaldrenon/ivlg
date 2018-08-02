@@ -197,30 +197,16 @@ export default {
           zip.file(child.fileName, child.imageData, { base64: true })
         }
       }
-      zip.generateAsync({ type: 'blob' }).then(function (content) {
+      zip.generateAsync({ type: 'base64' }).then(function (content) {
         console.log('zip generated')
-        console.log(content)
 
-        // var url = 'http://localhost:3000/'
         var url = 'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload'
         var oReq = new XMLHttpRequest()
         oReq.open('POST', url, true)
-        oReq.send(content)
+        oReq.send(btoa(content))
+      })
 
-        // Vue.ajax.post(url, { submission: submissionInfo, zip: content },
-        //   {
-        //     headers: {
-        //       Body: content,
-        //       ContentEncoding: 'base64',
-        //       ContentType: 'application/zip',
-        //       Key: 'logos.zip'
-        //     }
-        //   }
-        // ).then(function (successResponse) {
-        //   console.log('zip POST success: ' + successResponse)
-        // }, function (errorResponse) {
-        //   console.log('zip POST error: ' + errorResponse)
-        // })
+      zip.generateAsync({ type: 'blob' }).then(function (content) {
         saveAs(content, 'intervarsity-logos.zip')
       })
     },
