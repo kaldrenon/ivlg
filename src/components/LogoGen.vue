@@ -66,7 +66,7 @@
       <a class="btn btn-primary"
          href="#"
          id="btn-download"
-         v-on:click="downloadLogos()"
+         v-on:click="downloadLogos($event)"
          v-show="showButtons">
         Download ZIP
       </a>
@@ -177,7 +177,8 @@ export default {
         child.redrawText()
       }
     },
-    downloadLogos () {
+    downloadLogos (e) {
+      e.preventDefault()
       var zip = new JSZip()
 
       // Record data about the submission in json
@@ -198,18 +199,22 @@ export default {
       }
       zip.generateAsync({ type: 'blob' }).then(function (content) {
         console.log('zip generated')
+        console.log(content)
+
         Vue.ajax.post(
           // 'http://localhost:3000/',
           'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload',
           // Data
           {
-            body: btoa(content),
             submission: submissionInfo
           },
           // Options
           {
             headers: {
-              'Content-Type': 'multipart/form-data'
+              Body: content,
+              ContentEncoding: 'base64',
+              ContentType: 'application/zip',
+              Key: timestamp + '.zip'
             }
           }
         ).then(function (successResponse) {
