@@ -197,13 +197,25 @@ export default {
         }
       }
       zip.generateAsync({ type: 'blob' }).then(function (content) {
-        Vue.ajax.post('http://localhost:3000/', {
-          file: content,
-          submission: submissionInfo
-        }).then(function (successResposne) {
-          console.log(successResposne)
+        console.log('zip generated')
+        Vue.ajax.post(
+          // 'http://localhost:3000/',
+          'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload',
+          // Data
+          {
+            body: btoa(content),
+            submission: submissionInfo
+          },
+          // Options
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        ).then(function (successResponse) {
+          console.log('zip POST success: ' + successResponse)
         }, function (errorResponse) {
-          console.log(errorResponse)
+          console.log('zip POST error: ' + errorResponse)
         })
         saveAs(content, 'intervarsity-logos.zip')
       })
