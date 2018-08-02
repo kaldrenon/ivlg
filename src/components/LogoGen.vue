@@ -203,7 +203,7 @@ export default {
         var url = 'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload'
         var oReq = new XMLHttpRequest()
         oReq.open('POST', url, true)
-        oReq.send(btoa(content))
+        oReq.send(content)
       })
 
       zip.generateAsync({ type: 'blob' }).then(function (content) {
