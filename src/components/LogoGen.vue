@@ -155,9 +155,9 @@ export default {
         canvasWidth: 250,
         canvasHeight: 250,
         logoHeight: 200,
-        logoStartX: 25,
+        logoStartX: 35,
         logoStartY: 10,
-        logoWidth: 200
+        logoWidth: 180
       }
     }
   },
