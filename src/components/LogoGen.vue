@@ -92,6 +92,7 @@
       <div id="inverse-logos">
         <h2>Logos for Dark Backgrounds</h2>
         <wide-logo-inverse :config="wide" :schoolName="schoolName" :secondLine="secondLine" :multiline="multilineOn"></wide-logo-inverse>
+        <wide-short-inverse :config="wide" :shortName="shortName" :secondLine="secondLine"></wide-short-inverse>
         <square-logo-inverse :config="square" :shortName="shortName"></square-logo-inverse>
         <p>Note: the color you see here is just for demo purposes; the logos you download will have a transparent background.</p>
       </div>
@@ -107,6 +108,7 @@ import SquareLogoInverse from '@/components/SquareLogoInverse'
 import WideLogoForm from '@/components/WideLogoForm'
 import WideLogoInverse from '@/components/WideLogoInverse'
 import WideLogoShortName from '@/components/WideLogoShortName'
+import WideLogoShortInverse from '@/components/WideLogoShortInverse'
 import HelpBox from '@/components/HelpBox'
 
 // Utils
@@ -122,6 +124,7 @@ export default {
     'wide-logo-form': WideLogoForm,
     'wide-logo-inverse': WideLogoInverse,
     'wide-logo-short': WideLogoShortName,
+    'wide-short-inverse': WideLogoShortInverse,
     'square-logo-inverse': SquareLogoInverse,
     'square-logo-form': SquareLogoForm,
     'help-box': HelpBox

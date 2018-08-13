@@ -23,7 +23,7 @@ export default {
       return 'intervarsity-' + this.shortName + '-wide.png'
     },
     svgName: function () {
-      return 'intervarsity-' + this.shortName + '-default.svg'
+      return 'intervarsity-' + this.shortName + '-wide.svg'
     },
     imageData: function () {
       var canvas = document.getElementById('cnv-logo-wide-short')
