@@ -33,7 +33,7 @@
         Add Second Text Line
       </button>
 
-      <label for="txt-school">School Full Name (e.g. University of College)</label>
+      <label for="txt-school">School/Area/Region Full Name (e.g. University of College)</label>
       <input
         id="txt-school"
         type="text"
@@ -53,10 +53,11 @@
       </div>
       <span class="error-message">Sorry, that name is too long.</span>
     </div>
-    <label for="txt-school-short">School Short Name (e.g. UofC)</label>
+    <label for="txt-school-short">Abbreviated Name (e.g. UofC)</label>
     <input
       id="txt-school-short"
       type="text"
+      maxlength="10"
       style="width:200px"
       placeholder="Short Name"
       v-model="shortName"

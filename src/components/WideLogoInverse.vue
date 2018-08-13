@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>Wide Logo with School Full Name (Inverse Color)</h4>
+    <h4>Horizontal Logo with School/Area/Region Full Name (Inverse Color)</h4>
     <div id="canvas-container">
       <canvas class="cnv-logo" id="cnv-logo-wide-inverse" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
     </div>
