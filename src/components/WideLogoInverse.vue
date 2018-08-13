@@ -8,17 +8,22 @@
 </template>
 
 <script>
+import C2S from 'canvas2svg'
+
 export default {
   name: 'WideLogoInverse',
   data () {
     return this.config
   },
   props: [
-    'config', 'multiline', 'schoolName', 'secondLine', 'shortName'
+    'config', 'multiline', 'schoolName', 'secondLine', 'shortName', 'svgData'
   ],
   computed: {
     fileName: function () {
       return 'intervarsity-' + this.schoolName + '-inverse.png'
+    },
+    svgName: function () {
+      return 'intervarsity-' + this.schoolName + '-inverse.svg'
     },
     imageData: function () {
       var canvas = document.getElementById('cnv-logo-wide-inverse')
@@ -31,42 +36,46 @@ export default {
   },
   methods: {
     redrawText () {
-      var context = document.getElementById('cnv-logo-wide-inverse').getContext('2d')
+      var canvas = document.getElementById('cnv-logo-wide-inverse')
+      var context = canvas.getContext('2d')
+      var ctxSvg = new C2S(canvas.width, canvas.height)
       var text = this.schoolName.toUpperCase()
       var tooLong = true
       var metrics
 
-      // Clear the canvas and draw the base logo
-      context.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-      context.drawImage(
-        document.getElementById('image-holder-wide-inverse'),
-        this.logoStartX,
-        this.logoStartY,
-        this.logoWidth,
-        this.logoHeight)
-      context.fillStyle = 'white'
+      for (let ctx of [context, ctxSvg]) {
+        // Clear the canvas and draw the base logo
+        ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+        ctx.drawImage(
+          document.getElementById('image-holder-wide-inverse'),
+          this.logoStartX,
+          this.logoStartY,
+          this.logoWidth,
+          this.logoHeight)
+        ctx.fillStyle = 'white'
 
-      if (this.multiline) {
-        var textTwo = this.secondLine.toUpperCase()
-        context.font = this.lineTwoFontSize + 'px Avenir'
-        metrics = context.measureText(text)
-        var metricsTwo = context.measureText(textTwo)
+        if (this.multiline) {
+          var textTwo = this.secondLine.toUpperCase()
+          ctx.font = this.lineTwoFontSize + 'px Avenir'
+          metrics = ctx.measureText(text)
+          var metricsTwo = ctx.measureText(textTwo)
 
-        if (metrics.width < this.logoWidth && metricsTwo.width < this.logoWidth) {
-          tooLong = false
-          context.fillText(text, this.textOffset, this.lineOneDrop)
-          context.fillText(textTwo, this.textOffset, this.lineTwoDrop)
-        }
-      } else {
-      // Step down permissible font sizes; if the text fits, draw and break
-        for (var n = this.fontMax; n >= this.fontMin; n--) {
-          context.font = n + 'px Avenir'
-
-          metrics = context.measureText(text)
-          if (metrics.width < this.logoWidth) {
+          if (metrics.width < this.logoWidth && metricsTwo.width < this.logoWidth) {
             tooLong = false
-            context.fillText(text, this.textOffset, this.textDrop)
-            break
+            ctx.fillText(text, this.textOffset, this.lineOneDrop)
+            ctx.fillText(textTwo, this.textOffset, this.lineTwoDrop)
+          }
+        } else {
+          // Step down permissible font sizes; if the text fits, draw and break
+          for (var n = this.fontMax; n >= this.fontMin; n--) {
+            ctx.font = n + 'px Avenir'
+
+            metrics = ctx.measureText(text)
+            if (metrics.width < this.logoWidth) {
+              tooLong = false
+              ctx.fillText(text, this.textOffset, this.textDrop)
+              break
+            }
           }
         }
       }
@@ -77,6 +86,9 @@ export default {
       } else {
         document.getElementById('school-name-field').classList.remove('error')
       }
+
+      this.svgData = ctxSvg.getSerializedSvg()
+
       return this.textDrop
     },
     downloadLogo () {

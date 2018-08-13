@@ -1,3 +1,4 @@
+/* eslint-disable */
 
 // XXX TODO
 //---missing---
@@ -48,7 +49,7 @@ CanvasSVG.Base.prototype = {
         c.canvasSVGWrapper = true;
         this.canvas = c; // shouldn't be needed, but seems to be
     },
-    
+
     getContext: function (dim) {
         if (dim == "2d" || dim == "2D") {
             this.context = this.el._getContext(dim);
@@ -56,11 +57,11 @@ CanvasSVG.Base.prototype = {
         }
         return this.el._getContext(dim);
     },
-    
+
     // get canvas () {
     //     return this.el;
     // },
-    
+
     // --- SVG basics
     makeElement:    function (ln, attr, txt, parent) {
         var el = document.createElementNS(this.ns, ln);
@@ -73,11 +74,11 @@ CanvasSVG.Base.prototype = {
         if (parent) parent.appendChild(el);
         return el;
     },
-    
+
     addElement:     function (ln, attr, txt) {
         this.svg.appendChild(this.makeElement(ln, attr, txt));
     },
-    
+
     // --- specific element command handlers
     processCommon:  function (type, attr, cur, trans) {
         attr.opacity = cur.globalAlpha;
@@ -86,7 +87,7 @@ CanvasSVG.Base.prototype = {
         this.processTransforms(attr, trans);
         this.processFilters(attr, cur);
     },
-    
+
     setFill:    function (attr, cur) {
         // XXX note that fillStyle can be a paint server too
         // WebKit refuses rgba() in SVG
@@ -123,19 +124,19 @@ CanvasSVG.Base.prototype = {
         attr['stroke-linejoin'] = cur.lineJoin;
         attr['stroke-miterlimit'] = cur.miterLimit;
     },
-    
+
     addRect:    function (type, cur, prm, trans) {
         var attr = { x: prm[0], y: prm[1], width: prm[2], height: prm[3] };
         this.processCommon(type, attr, cur, trans);
         this.addElement('rect', attr);
     },
-    
+
     addPath:    function (type, cur, path, trans) {
         var attr = { d: this.buildPath(path) };
         this.processCommon(type, attr, cur, trans);
         this.addElement('path', attr);
     },
-    
+
     addText:    function (type, cur, prm, trans) {
         // XXX we don't support prm[3] maxWidth
         var attr = {
@@ -148,7 +149,7 @@ CanvasSVG.Base.prototype = {
         this.processCommon(type, attr, cur, trans);
         this.addElement('text', attr, prm[0]);
     },
-    
+
     buildPath:  function (path) {
         var cmds = [];
         for (var i = 0; i < path.length; i++) {
@@ -176,7 +177,7 @@ CanvasSVG.Base.prototype = {
             attr.transform = trans.join(" ");
         }
     },
-    
+
     processFilters: function (attr, cur) {
         if (cur.shadowOffsetX != 0 || cur.shadowOffsetY != 0 || cur.globalCompositeOperation != 'source-over') {
             var id = this.newID("fe");
@@ -247,7 +248,7 @@ CanvasSVG.Base.prototype = {
     //     <feGaussianBlur result = "blurOut" in = "matrixOut" stdDeviation = "10"/>
     //     <feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
     // </filter>
-    
+
     doClearRect:    function (prm) {
         // if all is cleared, optimise it away
         if (prm[0] == 0 && prm[1] == 0 && prm[2] == this.el.width && prm[3] == this.el.height) {
@@ -265,25 +266,25 @@ CanvasSVG.Base.prototype = {
                  " L " + x + "," + (y+h) + " z";
         var path = this.makeElement('path', { d: d, 'fill-rule': 'evenodd' });
         cp.appendChild(path);
-        
+
         var g = this.makeElement('g', { 'clip-path': "url(#" + id + ")"});
         while (this.svg.childNodes.length) g.appendChild(this.svg.firstChild);
         this.svg.appendChild(cp);
         this.svg.appendChild(g);
     },
-    
+
     // --- utils
     simpleClone:    function (obj) {
         var ret = {};
         for (var k in obj) ret[k] = obj[k];
         return ret;
     },
-    
+
     newID:       function (pfx) {
         this.id++;
         return pfx + this.id;
     },
-    
+
     // the braaaaaaaaiiiins
     handleCommands: function (cmd, prm) {
         switch (cmd) {
@@ -418,14 +419,14 @@ CanvasSVG.Base.prototype = {
                 alert("Unknown command: " + cmd);
         };
     },
-    
+
     // this is very heavily "inspired" by explorercanvas, thanks!
     pushArcAsA: function (x, y, rad, sAng, eAng, ckw) {
         var delta = Math.abs(sAng - eAng);
         if (sAng == eAng) return;
         var endX = x + rad * Math.cos(eAng);
         var endY = y + rad * Math.sin(eAng);
-        
+
         if (delta >= 2 * Math.PI) {
             this.pushArcAsA(x, y, rad, sAng, sAng + Math.PI, ckw);
             this.pushArcAsA(x, y, rad, sAng + Math.PI, sAng + 2*Math.PI, ckw);
@@ -438,7 +439,7 @@ CanvasSVG.Base.prototype = {
         var rot = delta * 180 / Math.PI; // sign, abs?
         var sweep = ckw ? 0 : 1;
         var largeArc = rot >= 180 == Boolean(ckw) ? 0 : 1;
-    
+
         if (this.path.length != 0) this.path.push(['L', startX, startY]);
         else this.path.push(['M', startX, startY]);
 
@@ -474,14 +475,14 @@ CanvasSVG.Deferred.prototype.getSVG = function () {
     this.stack = [];
     this.path = [];
     this.trans = [];
-    
+
     // create an <svg> elements that has the same properties as the <canvas> element
     this.svg = this.makeElement('svg', {
                                         width:      this.el.width + 'px',
                                         height:     this.el.height + 'px',
                                         viewBox:   "0 0 " + this.el.width + " " + this.el.height
                                         });
-    
+
     // walk the state and add stuff
     // don't try to be smart, just produce what the canvas calls produce
     for (var i = 0; i < this.state.length; i++) {
@@ -565,10 +566,10 @@ CanvasSVG.Live.prototype.runCommand = function (cmd, prm) {
     'scale',        'rotate',           'translate',    'setTransform', 'transform',
     'createLinearGradient',             'createRadialGradient',
     'createPattern','clearRect',        'beginPath',    'closePath',
-    'moveTo',       'lineTo',           'quadraticCurveTo',                 
+    'moveTo',       'lineTo',           'quadraticCurveTo',
     'bezierCurveTo','arcTo',            'rect',         'arc',
     'fill',         'stroke',           'clip',         'isPointInPath',
-    'fillText',     'strokeText',       'measureText',  'drawImage',        
+    'fillText',     'strokeText',       'measureText',  'drawImage',
     'createImageData',                  'getImageData', 'putImageData',
 ].forEach(function (s) {
     var sName = s;
@@ -582,5 +583,4 @@ CanvasSVG.Live.prototype.runCommand = function (cmd, prm) {
     };
 });
 
-
-
+exports.CanvasSVG = CanvasSVG

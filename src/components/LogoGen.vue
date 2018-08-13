@@ -100,6 +100,7 @@
 </template>
 
 <script>
+// Components
 import Vue from 'vue'
 import SquareLogoForm from '@/components/SquareLogoForm'
 import SquareLogoInverse from '@/components/SquareLogoInverse'
@@ -108,6 +109,7 @@ import WideLogoInverse from '@/components/WideLogoInverse'
 import WideLogoShortName from '@/components/WideLogoShortName'
 import HelpBox from '@/components/HelpBox'
 
+// Utils
 import ajax from 'vuejs-ajax'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver/FileSaver'
@@ -195,6 +197,9 @@ export default {
       for (let child of this.$children) {
         if (child.fileName) {
           zip.file(child.fileName, child.imageData, { base64: true })
+        }
+        if (child.svgName) {
+          zip.file(child.svgName, child.svgData)
         }
       }
       zip.generateAsync({ type: 'base64' }).then(function (content) {
