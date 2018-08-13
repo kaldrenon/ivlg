@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
 LogoGenImages*
-static
 !dist/static
 !docs/static
