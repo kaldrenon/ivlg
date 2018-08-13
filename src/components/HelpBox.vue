@@ -1,6 +1,6 @@
 <template>
   <div id="help-container">
-    <a href="#" v-on:click="toggle()">
+    <a href="#" v-on:click="toggle($event)">
       <span id="help-open">HELP</span>
       <span id="help-close">close</span>
     </a>
@@ -25,7 +25,8 @@
 export default {
   name: 'HelpBox',
   methods: {
-    toggle () {
+    toggle (e) {
+      e.preventDefault()
       document.getElementById('help-container').classList.toggle('expanded')
     },
     redrawText () {
