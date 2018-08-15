@@ -7,21 +7,23 @@
     <img class="image-holder" id="image-holder-square-inverse" src='../assets/image/SquareNormalDarkBg.svg'>
     <h4>Fill out the form below; logos using your inputs will be automatically generated for you.</h4>
 
-    <label for="txt-school">Your Name (required)</label>
+    <label id="name-label" for="txt-school">Your Name (required)</label>
     <input
       id="txt-name"
       type="text"
       style="width:400px"
       placeholder="Your Name (required)"
       v-focus
+      v-on:keyup="validateName()"
       v-model="userName" />
 
-    <label for="txt-school">Email Address (required)</label>
+    <label id="email-label" for="txt-email">Email Address (required)</label>
     <input
       id="txt-email"
       type="text"
       style="width:400px"
       placeholder="name@intervarsity.org"
+      v-on:keyup="validateEmail()"
       v-model="userEmail" />
 
     <div id="school-name-field">
@@ -173,7 +175,11 @@ export default {
       document.getElementById('multiline-container').classList.toggle('enabled')
       if (this.multilineOn) {
         document.getElementById('txt-line-two').focus()
+        document.getElementById('multiline-on').textContent = 'Remove Second Text Line'
+      } else {
+        document.getElementById('multiline-on').textContent = 'Add Second Text Line'
       }
+      document.getElementById('multiline-on').classList.toggle('active')
       this.redrawText()
     },
     redrawText () {
@@ -227,6 +233,23 @@ export default {
       this.redrawText()
       var txt = document.getElementById('txt-school')
       txt.focus()
+    },
+    validateName () {
+      if (this.userName) {
+        document.getElementById('name-label').classList.add('valid')
+      } else {
+        document.getElementById('name-label').classList.remove('valid')
+      }
+    },
+    validateEmail () {
+      var regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+
+      var result = regex.exec(this.userEmail)
+      if (result) {
+        document.getElementById('email-label').classList.add('valid')
+      } else {
+        document.getElementById('email-label').classList.remove('valid')
+      }
     }
   }
 }
@@ -265,7 +288,16 @@ div#container input {
 }
 
 button#multiline-on {
+  border: 1px solid #888;
+  padding: 3px 5px;
   float: right;
+  background-image: none;
+  background: #c8e6c9;
+}
+
+button#multiline-on.active {
+  background-image: none;
+  background: #ffcdd2;
 }
 
 div#container #multiline-container {
@@ -287,6 +319,10 @@ div#container #multiline-container.enabled {
 
 #school-name-field.error {
   background: #fee;
+}
+
+.valid {
+  color: green;
 }
 
 #actions {

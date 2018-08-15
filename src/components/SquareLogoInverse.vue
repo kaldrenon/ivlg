@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>Verical Logo with School Short Name (Inverse Color)</h4>
+    <h4>Verical Logo with School Short Name</h4>
     <div id="canvas-container">
       <canvas class='cnv-logo' id="cnv-logo-square-inverse" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
     </div>
@@ -13,10 +13,10 @@ import C2S from 'canvas2svg'
 export default {
   name: 'SquareLogoInverse',
   data () {
-    return this.config
+    return Object.assign(this.config, { svgData: null })
   },
   props: [
-    'config', 'schoolName', 'shortName', 'svgData'
+    'config', 'schoolName', 'shortName'
   ],
   computed: {
     fileName: function () {

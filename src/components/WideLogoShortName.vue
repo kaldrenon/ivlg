@@ -13,10 +13,10 @@ import C2S from 'canvas2svg'
 export default {
   name: 'WideLogoShortName',
   data () {
-    return this.config
+    return Object.assign(this.config, { svgData: null })
   },
   props: [
-    'config', 'schoolName', 'shortName', 'svgData'
+    'config', 'schoolName', 'shortName'
   ],
   computed: {
     fileName: function () {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>Horizontal Logo with School/Area/Region Full Name (Inverse Color)</h4>
+    <h4>Horizontal Logo with School/Area/Region Full Name</h4>
     <div id="canvas-container">
       <canvas class="cnv-logo" id="cnv-logo-wide-inverse" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
     </div>
@@ -13,10 +13,10 @@ import C2S from 'canvas2svg'
 export default {
   name: 'WideLogoInverse',
   data () {
-    return this.config
+    return Object.assign(this.config, { svgData: null })
   },
   props: [
-    'config', 'multiline', 'schoolName', 'secondLine', 'shortName', 'svgData'
+    'config', 'multiline', 'schoolName', 'secondLine', 'shortName'
   ],
   computed: {
     fileName: function () {
