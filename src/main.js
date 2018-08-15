@@ -10,12 +10,8 @@ import ajax from 'vuejs-ajax'
 
 // Tooling
 import router from './routes.js'
-// import BootstrapVue from 'bootstrap-vue'
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
-//
+
 // // Config
-// Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 Vue.use(ajax)
 
