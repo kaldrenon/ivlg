@@ -142,30 +142,30 @@ export default {
       multilineOn: false,
       secondLine: '',
       wide: {
-        textOffset: 10,
-        rightOffset: 390,
-        textDrop: 110,
+        canvasHeight: 120,
+        canvasWidth: 400,
         fontMax: 26,
         fontMin: 20,
-        canvasWidth: 400,
-        canvasHeight: 120,
+        lineOneDrop: 94,
+        lineTwoDrop: 110,
+        lineTwoFontSize: 14,
         logoHeight: 72,
         logoStartX: 10,
         logoStartY: 5,
         logoWidth: 380,
-        lineOneDrop: 94,
-        lineTwoDrop: 110,
-        lineTwoFontSize: 14
+        rightOffset: 390,
+        textDrop: 110,
+        textOffset: 10
       },
       square: {
-        textOffset: 125,
-        textDrop: 235,
-        canvasWidth: 250,
         canvasHeight: 250,
+        canvasWidth: 250,
         logoHeight: 200,
         logoStartX: 35,
         logoStartY: 10,
-        logoWidth: 180
+        logoWidth: 180,
+        textDrop: 235,
+        textOffset: 125
       }
     }
   },
