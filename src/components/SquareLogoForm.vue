@@ -31,7 +31,7 @@ export default {
       return data.substr(data.indexOf(',') + 1)
     }
   },
-  mounted () {
+  nted () {
     this.redrawText()
   },
   methods: {

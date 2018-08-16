@@ -83,21 +83,27 @@
     </div>
 
     <hr>
-    <h1>Logo Previews</h1>
 
-    <div class="two-columns">
-      <div id="default-logos">
-        <h2>Standard Logos</h2>
-        <wide-logo-form :config="wide" :schoolName="schoolName" :secondLine="secondLine" :multiline="multilineOn"></wide-logo-form>
-        <wide-logo-short :config="wide" :shortName="shortName"></wide-logo-short>
-        <square-logo-form :config="square" :shortName="shortName"></square-logo-form>
-      </div>
-      <div id="inverse-logos">
-        <h2>Logos for Dark Backgrounds</h2>
-        <wide-logo-inverse :config="wide" :schoolName="schoolName" :secondLine="secondLine" :multiline="multilineOn"></wide-logo-inverse>
-        <wide-short-inverse :config="wide" :shortName="shortName" :secondLine="secondLine"></wide-short-inverse>
-        <square-logo-inverse :config="square" :shortName="shortName"></square-logo-inverse>
-        <p>Note: the color you see here is just for demo purposes; the logos you download will have a transparent background.</p>
+    <div id="previews-container" class="hidden">
+      <span id="preview-info">Previews will show once you start entering a name!</span>
+      <div id="previews">
+        <h1>Logo Previews</h1>
+
+        <div class="two-columns">
+          <div id="default-logos">
+            <h2>Standard Logos</h2>
+            <wide-logo-form :config="wide" :schoolName="schoolName" :secondLine="secondLine" :multiline="multilineOn"></wide-logo-form>
+            <wide-logo-short :config="wide" :shortName="shortName"></wide-logo-short>
+            <square-logo-form :config="square" :shortName="shortName"></square-logo-form>
+          </div>
+          <div id="inverse-logos">
+            <h2>Logos for Dark Backgrounds</h2>
+            <wide-logo-inverse :config="wide" :schoolName="schoolName" :secondLine="secondLine" :multiline="multilineOn"></wide-logo-inverse>
+            <wide-short-inverse :config="wide" :shortName="shortName" :secondLine="secondLine"></wide-short-inverse>
+            <square-logo-inverse :config="square" :shortName="shortName"></square-logo-inverse>
+            <p>Note: the color you see here is just for demo purposes; the logos you download will have a transparent background.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -186,6 +192,7 @@ export default {
     },
     redrawText () {
       this.showButtons = true
+      document.getElementById('previews-container').classList.remove('hidden')
 
       for (let child of this.$children) {
         child.redrawText()
@@ -369,6 +376,20 @@ hr {
   border: 0;
   height: 1px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+#previews-container #preview-info {
+  display: none;
+}
+
+#previews-container.hidden #preview-info {
+  margin-top: 30px;
+  text-align: center;
+  display: block;
+}
+
+#previews-container.hidden #previews {
+  display: none;
 }
 
 .two-columns {

@@ -31,9 +31,6 @@ export default {
       return data.substr(data.indexOf(',') + 1)
     }
   },
-  mounted () {
-    this.redrawText()
-  },
   methods: {
     redrawText () {
       var canvas = document.getElementById('cnv-logo-wide-inverse')
