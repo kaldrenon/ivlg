@@ -46,16 +46,12 @@ export default {
         ctx.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
         ctx.fillStyle = '#666'
 
-        this.wrapText(ctx, this.shortName, this.textOffset, this.textDrop, this.canvasWidth, '20px', 'Avenir')
+        ctx.font = '20px Avenir'
+        ctx.textAlign = 'center'
+        ctx.fillText(this.shortName.toUpperCase(), this.textOffset, this.textDrop)
       }
 
       this.svgData = ctxSvg.getSerializedSvg()
-    },
-    wrapText (context, text, x, y, maxWidth, fontSize, fontFace) {
-      context.font = fontSize + ' ' + fontFace
-      context.textAlign = 'center'
-      context.fillText(text.toUpperCase(), x, y)
-      return y
     }
   }
 }

@@ -218,13 +218,20 @@ export default {
           zip.file(child.fileName, child.imageData, { base64: true })
         }
         if (child.svgName) {
+          console.log('generating SVG for ' + child.svgName)
           var fullSvg = child.svgData.replace(/<defs\/>/, avenir)
+
+          if (child.svgName.includes(this.shortName)) {
+            console.log('inserting coords for square')
+            fullSvg = fullSvg.replace(/<image width="180"/, '<image x="35" y="10" width="180"')
+          } else {
+            console.log('inserting coords for wide')
+            fullSvg = fullSvg.replace(/<image width="380"/, '<image x="10" y="5" width="380"')
+          }
           zip.file(child.svgName, fullSvg)
         }
       }
       zip.generateAsync({ type: 'base64' }).then(function (content) {
-        console.log('zip generated')
-
         var url = 'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload'
         var oReq = new XMLHttpRequest()
         oReq.open('POST', url, true)
