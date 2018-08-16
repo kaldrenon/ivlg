@@ -200,6 +200,12 @@ export default {
     },
     downloadLogos (e) {
       e.preventDefault()
+      if (document.getElementsByClassName('valid').length < 2) {
+        console.log('invalid stuff')
+        alert('Please provide your name and email address!')
+        return
+      }
+      this.redrawText()
       var zip = new JSZip()
 
       // Record data about the submission in json
