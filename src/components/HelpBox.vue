@@ -1,6 +1,6 @@
 <template>
   <div id="help-container">
-    <a href="#" v-on:click="toggle($event)">
+    <a class="toggle" href="#" v-on:click="toggle($event)">
       <span id="help-open">HELP</span>
       <span id="help-close">close</span>
     </a>
@@ -25,7 +25,7 @@
       <ol>
         <li>Once you download your files, a copy of the files will be sent to the 2100 Design team, who will review all generated logos periodically. If there are any issues, someone will get in touch via the email you provide.</li>
         <li>Remember to refer to the Brand Book for proper usage of the logo.</li>
-        <li>Questions? Contact xxxx [*Mark, do you think we need this? Whose email should we provide?]</li>
+        <li>Questions? Contact <a href="mailto:brand@intervarsity.org">brand@intervarsity.org</a></li>
       </ol>
     </div>
   </div>
@@ -61,13 +61,13 @@ export default {
   display: none;
 }
 
-#help-container a {
+#help-container a.toggle {
   text-decoration: none;
   color: #333;
   padding: 5px 10px;
 }
 
-#help-container a:hover {
+#help-container a.toggle:hover {
   background: #ddd
 }
 
@@ -85,7 +85,7 @@ export default {
   box-shadow:         8px 8px 17px 2px rgba(00, 66, 80, 0.3);
 }
 
-#help-container.expanded a {
+#help-container.expanded a.toggle {
   float: right;
 }
 
