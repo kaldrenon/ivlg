@@ -114,6 +114,8 @@ import WideLogoShortName from '@/components/WideLogoShortName'
 import WideLogoShortInverse from '@/components/WideLogoShortInverse'
 import HelpBox from '@/components/HelpBox'
 
+import avenir from '@/avenir'
+
 // Utils
 import ajax from 'vuejs-ajax'
 import JSZip from 'jszip'
@@ -209,7 +211,8 @@ export default {
           zip.file(child.fileName, child.imageData, { base64: true })
         }
         if (child.svgName) {
-          zip.file(child.svgName, child.svgData)
+          var fullSvg = child.svgData.replace(/<defs\/>/, avenir)
+          zip.file(child.svgName, fullSvg)
         }
       }
       zip.generateAsync({ type: 'base64' }).then(function (content) {

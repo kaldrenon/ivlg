@@ -13,10 +13,10 @@ import C2S from 'canvas2svg'
 export default {
   name: 'WideLogoInverse',
   data () {
-    return Object.assign(this.config, { svgData: null })
+    return this.config
   },
   props: [
-    'config', 'multiline', 'schoolName', 'secondLine', 'shortName'
+    'config', 'multiline', 'schoolName', 'secondLine', 'shortName', 'svgData'
   ],
   computed: {
     fileName: function () {
