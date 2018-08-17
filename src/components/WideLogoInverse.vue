@@ -3,7 +3,7 @@
     <h4>Horizontal Logo with School/Area/Region Full Name</h4>
     <div id="canvas-container">
       <canvas class="cnv-logo" id="cnv-logo-wide-inverse" :width="this.canvasWidth" :height="this.currentCanvasHeight"></canvas>
-      <canvas class="cnv-logo-large" id="cnv-logo-wide-inverse-large" :width="this.large.canvasWidth" :height="this.currentCanvasHeight * 2.75"></canvas>
+      <canvas class="cnv-logo-large" id="cnv-logo-wide-inverse-large" :width="this.large.canvasWidth" :height="this.currentCanvasHeight * 3.125"></canvas>
     </div>
   </div>
 </template>
@@ -111,7 +111,7 @@ export default {
       var text = this.schoolName.toUpperCase()
       var metrics
 
-      ctx.clearRect(0, 0, this.large.canvasWidth, this.currentCanvasHeight * 2.75)
+      ctx.clearRect(0, 0, this.large.canvasWidth, this.currentCanvasHeight * 3.125)
       ctx.drawImage(
         document.getElementById('image-holder-wide-inverse'),
         this.large.logoStartX,

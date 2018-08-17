@@ -175,21 +175,21 @@ export default {
         textDrop: 110,
         textOffset: 10,
         large: {
-          canvasHeight: 330,
-          canvasWidth: 1100,
-          fontMax: 72,
-          fontMin: 55,
-          lineOneDrop: 297,
-          lineTwoCanvasHeight: 385,
-          lineTwoDrop: 371,
-          lineTwoFontSize: 58,
-          logoHeight: 198,
-          logoStartX: 28,
-          logoStartY: 14,
-          logoWidth: 1045,
-          rightOffset: 1072,
-          textDrop: 303,
-          textOffset: 28
+          canvasHeight: 375,
+          canvasWidth: 1250,
+          fontMax: 81,
+          fontMin: 63,
+          lineOneDrop: 338,
+          lineTwoCanvasHeight: 438,
+          lineTwoDrop: 422,
+          lineTwoFontSize: 66,
+          logoHeight: 225,
+          logoStartX: 31,
+          logoStartY: 16,
+          logoWidth: 1188,
+          rightOffset: 1219,
+          textDrop: 344,
+          textOffset: 31
         }
       },
       square: {
@@ -203,15 +203,15 @@ export default {
         textDrop: 235,
         textOffset: 125,
         large: {
-          canvasHeight: 688,
-          canvasWidth: 688,
-          fontSize: 55,
-          logoHeight: 550,
-          logoStartX: 96,
-          logoStartY: 28,
-          logoWidth: 495,
-          textDrop: 646,
-          textOffset: 344
+          canvasHeight: 781,
+          canvasWidth: 781,
+          fontSize: 63,
+          logoHeight: 625,
+          logoStartX: 109,
+          logoStartY: 31,
+          logoWidth: 563,
+          textDrop: 734,
+          textOffset: 391
         }
       }
     }
