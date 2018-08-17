@@ -173,17 +173,46 @@ export default {
         logoWidth: 380,
         rightOffset: 390,
         textDrop: 110,
-        textOffset: 10
+        textOffset: 10,
+        large: {
+          canvasHeight: 330,
+          canvasWidth: 1100,
+          fontMax: 72,
+          fontMin: 55,
+          lineOneDrop: 297,
+          lineTwoCanvasHeight: 385,
+          lineTwoDrop: 371,
+          lineTwoFontSize: 58,
+          logoHeight: 198,
+          logoStartX: 28,
+          logoStartY: 14,
+          logoWidth: 1045,
+          rightOffset: 1072,
+          textDrop: 303,
+          textOffset: 28
+        }
       },
       square: {
         canvasHeight: 250,
         canvasWidth: 250,
+        fontSize: 20,
         logoHeight: 200,
         logoStartX: 35,
         logoStartY: 10,
         logoWidth: 180,
         textDrop: 235,
-        textOffset: 125
+        textOffset: 125,
+        large: {
+          canvasHeight: 688,
+          canvasWidth: 688,
+          fontSize: 55,
+          logoHeight: 550,
+          logoStartX: 96,
+          logoStartY: 28,
+          logoWidth: 495,
+          textDrop: 646,
+          textOffset: 344
+        }
       }
     }
   },
@@ -233,6 +262,11 @@ export default {
         if (child.fileName) {
           zip.file(child.fileName, child.imageData, { base64: true })
         }
+
+        if (child.fileNameLarge) {
+          zip.file(child.fileNameLarge, child.imageDataLarge, { base64: true })
+        }
+
         if (child.svgName) {
           var fullSvg = child.svgData.replace(/<defs\/>/, avenir)
 
@@ -285,7 +319,7 @@ export default {
 }
 </script>
 
-<style>
+            <style>
 div#container {
   position: relative;
   max-width: 860px;
@@ -385,6 +419,10 @@ div#container #multiline-container.enabled {
   -moz-box-shadow:    3px 3px 3px 3px #ddd;
   -webkit-box-shadow: 3px 3px 3px 3px #ddd;
   box-shadow:         3px 3px 3px 3px #ddd;
+}
+
+.cnv-logo-large {
+  display: none;
 }
 
 .image-holder {

@@ -3,6 +3,7 @@
     <h4>Horizontal Logo with School/Area/Region Full Name</h4>
     <div id="canvas-container">
       <canvas class="cnv-logo" id="cnv-logo-wide-inverse" :width="this.canvasWidth" :height="this.currentCanvasHeight"></canvas>
+      <canvas class="cnv-logo-large" id="cnv-logo-wide-inverse-large" :width="this.large.canvasWidth" :height="this.currentCanvasHeight * 2.75"></canvas>
     </div>
   </div>
 </template>
@@ -29,11 +30,19 @@ export default {
     fileName: function () {
       return 'InterVarsity Horizontal Logo_full_white.png'
     },
+    fileNameLarge: function () {
+      return 'InterVarsity Horizontal Logo_full_white_print.png'
+    },
     svgName: function () {
       return 'InterVarsity Horizontal Logo_full_white.svg'
     },
     imageData: function () {
       var canvas = document.getElementById('cnv-logo-wide-inverse')
+      var data = canvas.toDataURL('image/png')
+      return data.substr(data.indexOf(',') + 1)
+    },
+    imageDataLarge: function () {
+      var canvas = document.getElementById('cnv-logo-wide-inverse-large')
       var data = canvas.toDataURL('image/png')
       return data.substr(data.indexOf(',') + 1)
     }
@@ -92,15 +101,54 @@ export default {
       }
 
       this.svgData = ctxSvg.getSerializedSvg()
+      this.redrawTextLarge()
 
       return this.textDrop
+    },
+    redrawTextLarge () {
+      var canvas = document.getElementById('cnv-logo-wide-inverse-large')
+      var ctx = canvas.getContext('2d')
+      var text = this.schoolName.toUpperCase()
+      var metrics
+
+      ctx.clearRect(0, 0, this.large.canvasWidth, this.currentCanvasHeight * 2.75)
+      ctx.drawImage(
+        document.getElementById('image-holder-wide-inverse'),
+        this.large.logoStartX,
+        this.large.logoStartY,
+        this.large.logoWidth,
+        this.large.logoHeight)
+      ctx.fillStyle = 'white'
+
+      if (this.multiline) {
+        var textTwo = this.secondLine.toUpperCase()
+        ctx.font = this.large.lineTwoFontSize + 'px Avenir'
+        metrics = ctx.measureText(text)
+        var metricsTwo = ctx.measureText(textTwo)
+
+        if (metrics.width < this.large.logoWidth && metricsTwo.width < this.large.logoWidth) {
+          ctx.fillText(text, this.large.textOffset, this.large.lineOneDrop)
+          ctx.fillText(textTwo, this.large.textOffset, this.large.lineTwoDrop)
+        }
+      } else {
+        // Step down permissible font sizes; if the text fits, draw and break
+        for (var n = this.large.fontMax; n >= this.large.fontMin; n--) {
+          ctx.font = n + 'px Avenir'
+
+          metrics = ctx.measureText(text)
+          if (metrics.width < this.large.logoWidth) {
+            ctx.fillText(text, this.large.textOffset, this.large.textDrop)
+            break
+          }
+        }
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-#cnv-logo-wide-inverse {
+#cnv-logo-wide-inverse, #cnv-logo-wide-inverse-large {
   background: #006680;
 }
 </style>

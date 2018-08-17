@@ -3,6 +3,7 @@
     <h4>Horizontal Logo with Abbreviated Name</h4>
     <div id="canvas-container">
       <canvas class="cnv-logo" id="cnv-logo-wide-short-inverse" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
+      <canvas class="cnv-logo-large" id="cnv-logo-wide-short-inverse-large" :width="this.large.canvasWidth" :height="this.large.canvasHeight"></canvas>
     </div>
   </div>
 </template>
@@ -22,11 +23,19 @@ export default {
     fileName: function () {
       return 'InterVarsity Horizontal Logo_abbrev_white.png'
     },
+    fileNameLarge: function () {
+      return 'InterVarsity Horizontal Logo_abbrev_white_print.png'
+    },
     svgName: function () {
       return 'InterVarsity Horizontal Logo_abbrev_white.svg'
     },
     imageData: function () {
       var canvas = document.getElementById('cnv-logo-wide-short-inverse')
+      var data = canvas.toDataURL('image/png')
+      return data.substr(data.indexOf(',') + 1)
+    },
+    imageDataLarge: function () {
+      var canvas = document.getElementById('cnv-logo-wide-short-inverse-large')
       var data = canvas.toDataURL('image/png')
       return data.substr(data.indexOf(',') + 1)
     }
@@ -40,25 +49,35 @@ export default {
       for (let ctx of [context, ctxSvg]) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
-        ctx.fillStyle = 'white'
 
-        this.wrapText(ctx, this.shortName.toUpperCase(), this.rightOffset, this.textDrop, 700, '27px', 'Avenir')
+        ctx.fillStyle = 'white'
+        ctx.font = this.fontMax + 'px Avenir'
+        ctx.textAlign = 'right'
+        ctx.fillText(this.shortName.toUpperCase(), this.rightOffset, this.textDrop)
       }
 
       this.svgData = ctxSvg.getSerializedSvg()
+      this.redrawTextLarge()
     },
-    wrapText (context, text, x, y, maxWidth, fontSize, fontFace) {
-      context.font = fontSize + ' ' + fontFace
-      context.textAlign = 'right'
-      context.fillText(text, x, y)
-      return y
+    redrawTextLarge () {
+      var canvas = document.getElementById('cnv-logo-wide-short-inverse-large')
+      var ctx = canvas.getContext('2d')
+      var img = document.getElementById('image-holder-wide-inverse')
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.drawImage(img, this.large.logoStartX, this.large.logoStartY, this.large.logoWidth, this.large.logoHeight)
+      ctx.fillStyle = 'white'
+
+      ctx.font = this.large.fontMax + 'px Avenir'
+      ctx.textAlign = 'right'
+      ctx.fillText(this.shortName.toUpperCase(), this.large.rightOffset, this.large.textDrop)
     }
   }
 }
 </script>
 
 <style scoped>
-.cnv-logo {
+#cnv-logo-wide-short-inverse, #cnv-logo-wide-short-inverse-large {
   background: #006680;
 }
 </style>
