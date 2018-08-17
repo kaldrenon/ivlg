@@ -2,7 +2,7 @@
   <div>
     <h4>Horizontal Logo with School/Area/Region Full Name</h4>
     <div id="canvas-container">
-      <canvas class="cnv-logo" id="cnv-logo-wide-full" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
+      <canvas class="cnv-logo" id="cnv-logo-wide-full" :width="this.canvasWidth" :height="this.currentCanvasHeight"></canvas>
     </div>
   </div>
 </template>
@@ -19,6 +19,13 @@ export default {
     'config', 'multiline', 'schoolName', 'secondLine', 'shortName', 'svgData'
   ],
   computed: {
+    currentCanvasHeight: function () {
+      if (this.multiline) {
+        return this.lineTwoCanvasHeight
+      } else {
+        return this.canvasHeight
+      }
+    },
     fileName: function () {
       return 'InterVarsity Horizontal Logo_full.png'
     },
@@ -42,7 +49,7 @@ export default {
 
       for (let ctx of [context, ctxSvg]) {
         // Clear the canvas and draw the base logo
-        ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+        ctx.clearRect(0, 0, this.canvasWidth, this.currentCanvasHeight)
         ctx.drawImage(
           document.getElementById('image-holder-wide'),
           this.logoStartX,
