@@ -10,9 +10,10 @@
     <label id="name-label" for="txt-school">Your Name (required)</label>
     <input
       id="txt-name"
-      type="text"
-      style="width:400px"
       placeholder="Your Name (required)"
+      style="width:400px"
+      tabindex="1"
+      type="text"
       v-focus
       v-on:keyup="validateName()"
       v-model="userName" />
@@ -20,17 +21,19 @@
     <label id="email-label" for="txt-email">Email Address (required)</label>
     <input
       id="txt-email"
-      type="text"
-      style="width:400px"
       placeholder="name@intervarsity.org"
+      style="width:400px"
+      tabindex="2"
+      type="text"
       v-on:keyup="validateEmail()"
       v-model="userEmail" />
 
     <div id="school-name-field">
       <button
-        type="checkbox"
         id="multiline-on"
         name="multiline-on"
+        tabindex="5"
+        type="checkbox"
         v-on:click="toggleMultiline()">
         Add Second Text Line
       </button>
@@ -38,9 +41,10 @@
       <label for="txt-school">School/Area/Region Full Name (e.g. University of College)</label>
       <input
         id="txt-school"
-        type="text"
-        style="width:400px"
         placeholder="School Name"
+        style="width:400px"
+        tabindex="3"
+        type="text"
         v-model="schoolName"
         v-on:keyup="redrawText()" />
 
@@ -48,8 +52,9 @@
         <label for="txt-line-two">Second Text Line</label>
         <input
           id="txt-line-two"
-          type="text"
           style="width:400px"
+          tabindex="6"
+          type="text"
           v-model="secondLine"
           v-on:keyup="redrawText()" />
       </div>
@@ -58,10 +63,11 @@
     <label for="txt-school-short">Abbreviated Name (e.g. UofC)</label>
     <input
       id="txt-school-short"
-      type="text"
       maxlength="10"
-      style="width:200px"
       placeholder="Short Name"
+      style="width:200px"
+      tabindex="4"
+      type="text"
       v-model="shortName"
       v-on:keyup="redrawText()" />
 
@@ -69,6 +75,7 @@
       <a class="btn btn-primary"
          href="#"
          id="btn-download"
+         tabindex="7"
          v-on:click="downloadLogos($event)"
          v-show="showButtons">
         Download ZIP
@@ -76,6 +83,7 @@
       <a class="btn btn-secondary"
          href="#"
          id="brn-reload"
+         tabindex="8"
          v-on:click="resetPage()"
          v-show="showButtons">
         Reset Page
