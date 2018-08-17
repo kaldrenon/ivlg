@@ -12,7 +12,6 @@
         <li>School, area, or region name should be the full name or your college, university, area, or region, e.g. “University of College” or “Greater Los Angeles.”</li>
         <li>Abbreviated name may use initials or similar shorthand, like “UofC”.</li>
         <li>Use a second line ONLY if your full name is longer than the character limit, or if you’re creating a logo for a focused ministry such as “International Student Ministry / at University of College.”</li>
-        <li>If you change your mind about needing a second line, click “RESET” to reset the form. [*include this only if you can’t figure out how to get a button that removes the second line]</li>
       </ol>
 
       <h4>Using the logo files</h4>
