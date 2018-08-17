@@ -16,7 +16,7 @@
 
       <h4>Using the logo files</h4>
       <ol>
-        <li>When you click “Download ZIP,” you will receive a ZIP file with all the displayed logos in it. PNG files are for digital use, SVG files are for print use. You do not need to use all of the files, but they’re all ready for you to use!</li>
+        <li>When you click “Download ZIP,” you will receive a ZIP file with all the displayed logos in it. Small PNG files are for digital use, the PNG files with "_print" in the filename are for printing on 8.5"x11" paper or smaller. You do not need to use all of the files, but they’re all ready for you to use!</li>
         <li>Inverted color logos are all white with a transparent backgrounds. They may look blank in some file browsers or image applications. Don’t worry! The logo and text will be there, just put it over a dark background to see it.</li>
       </ol>
 
