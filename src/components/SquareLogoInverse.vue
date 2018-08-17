@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>Verical Logo with School Short Name</h4>
+    <h4>Vertical Logo with School Short Name</h4>
     <div id="canvas-container">
       <canvas class='cnv-logo' id="cnv-logo-square-inverse" :width="this.canvasWidth" :height="this.canvasHeight"></canvas>
     </div>
