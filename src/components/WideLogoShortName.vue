@@ -52,9 +52,6 @@ export default {
       context.textAlign = 'right'
       context.fillText(text, x, y)
       return y
-    },
-    downloadLogo () {
-      console.log('not implemented yet')
     }
   }
 }

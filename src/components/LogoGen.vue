@@ -134,6 +134,7 @@ import avenir from '@/avenir'
 import ajax from 'vuejs-ajax'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver/FileSaver'
+const uuidv4 = require('uuid/v4')
 
 Vue.use(ajax)
 
@@ -158,13 +159,13 @@ export default {
       multilineOn: false,
       secondLine: '',
       wide: {
-        canvasHeight: 120,
+        canvasHeight: 140,
         canvasWidth: 400,
         fontMax: 26,
         fontMin: 20,
-        lineOneDrop: 94,
-        lineTwoDrop: 112,
-        lineTwoFontSize: 15,
+        lineOneDrop: 110,
+        lineTwoDrop: 130,
+        lineTwoFontSize: 18,
         logoHeight: 72,
         logoStartX: 10,
         logoStartY: 5,
@@ -209,7 +210,6 @@ export default {
     downloadLogos (e) {
       e.preventDefault()
       if (document.getElementsByClassName('valid').length < 2) {
-        console.log('invalid stuff')
         alert('Please provide your name and email address!')
         return
       }
@@ -223,7 +223,8 @@ export default {
         email: this.userEmail,
         schoolName: this.schoolName,
         shortName: this.shortName,
-        timestamp: timestamp.toJSON()
+        timestamp: timestamp.toJSON(),
+        uuid: uuidv4()
       }
       zip.file('submission.json', JSON.stringify(submissionInfo, null, 2))
 
@@ -232,21 +233,18 @@ export default {
           zip.file(child.fileName, child.imageData, { base64: true })
         }
         if (child.svgName) {
-          console.log('generating SVG for ' + child.svgName)
           var fullSvg = child.svgData.replace(/<defs\/>/, avenir)
 
           if (child.svgName.includes(this.shortName)) {
-            console.log('inserting coords for square')
             fullSvg = fullSvg.replace(/<image width="180"/, '<image x="35" y="10" width="180"')
           } else {
-            console.log('inserting coords for wide')
             fullSvg = fullSvg.replace(/<image width="380"/, '<image x="10" y="5" width="380"')
           }
           zip.file(child.svgName, fullSvg)
         }
       }
       zip.generateAsync({ type: 'base64' }).then(function (content) {
-        var url = 'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload'
+        var url = 'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload?uuid=' + submissionInfo.uuid
         var oReq = new XMLHttpRequest()
         oReq.open('POST', url, true)
         oReq.send(content)

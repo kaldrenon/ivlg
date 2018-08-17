@@ -87,9 +87,6 @@ export default {
       this.svgData = ctxSvg.getSerializedSvg()
 
       return this.textDrop
-    },
-    downloadLogo () {
-      console.log('not implemented yet')
     }
   }
 }
