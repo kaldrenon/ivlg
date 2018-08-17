@@ -20,10 +20,10 @@ export default {
   ],
   computed: {
     fileName: function () {
-      return 'intervarsity-' + this.shortName + '-inverse.png'
+      return 'InterVarsity Vertical Logo_white.png'
     },
     svgName: function () {
-      return 'intervarsity-' + this.shortName + '-inverse.svg'
+      return 'InterVarsity Vertical Logo_white.svg'
     },
     imageData: function () {
       var canvas = document.getElementById('cnv-logo-square-inverse')

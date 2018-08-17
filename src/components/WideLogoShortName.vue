@@ -20,10 +20,10 @@ export default {
   ],
   computed: {
     fileName: function () {
-      return 'intervarsity-' + this.shortName + '-wide.png'
+      return 'InterVarsity Horizontal Logo_abbrev.png'
     },
     svgName: function () {
-      return 'intervarsity-' + this.shortName + '-wide.svg'
+      return 'InterVarsity Horizontal Logo_abbrev.svg'
     },
     imageData: function () {
       var canvas = document.getElementById('cnv-logo-wide-short')
