@@ -267,16 +267,17 @@ export default {
           zip.file(child.fileNameLarge, child.imageDataLarge, { base64: true })
         }
 
-        if (child.svgName) {
-          var fullSvg = child.svgData.replace(/<defs\/>/, avenir)
-
-          if (child.svgName.includes(this.shortName)) {
-            fullSvg = fullSvg.replace(/<image width="180"/, '<image x="35" y="10" width="180"')
-          } else {
-            fullSvg = fullSvg.replace(/<image width="380"/, '<image x="10" y="5" width="380"')
-          }
-          zip.file(child.svgName, fullSvg)
-        }
+        // TEMPORARILY DISABLE SAVING OF SVGs
+        // if (child.svgName) {
+        //   var fullSvg = child.svgData.replace(/<defs\/>/, avenir)
+        //
+        //   if (child.svgName.includes(this.shortName)) {
+        //     fullSvg = fullSvg.replace(/<image width="180"/, '<image x="35" y="10" width="180"')
+        //   } else {
+        //     fullSvg = fullSvg.replace(/<image width="380"/, '<image x="10" y="5" width="380"')
+        //   }
+        //   zip.file(child.svgName, fullSvg)
+        // }
       }
       zip.generateAsync({ type: 'base64' }).then(function (content) {
         var url = 'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload?uuid=' + submissionInfo.uuid
