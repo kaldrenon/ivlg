@@ -252,6 +252,7 @@ export default {
         name: this.userName,
         email: this.userEmail,
         schoolName: this.schoolName,
+        secondLine: this.secondLine,
         shortName: this.shortName,
         timestamp: timestamp.toJSON(),
         uuid: uuidv4()
