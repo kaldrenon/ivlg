@@ -10,7 +10,6 @@
 
 <script>
 import C2S from 'canvas2svg'
-import svgRaw from '@/svg_raw'
 import avenir from '@/avenir'
 
 export default {
@@ -36,9 +35,9 @@ export default {
       return 'InterVarsity Horizontal Logo_full_print.png'
     },
     svgData: function () {
-      var svg = svgRaw.wideNormal
-      var textTag = '<text fill="#666" stroke="none" font-family="Avenir" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName + '</text>'
-      svg = svg.replace('</svg>', textTag + '</svg>')
+      var svg = this.svgRaw
+      var textTag = '<text fill="#666" stroke="none" font-family="Avenir" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
+      svg = svg.replace('REPLACE_ME', textTag)
       svg = svg.replace(/<defs\/>/, avenir)
       return svg
     },

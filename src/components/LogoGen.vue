@@ -129,6 +129,7 @@ import WideLogoShortInverse from '@/components/WideLogoShortInverse'
 import HelpBox from '@/components/HelpBox'
 
 import avenir from '@/avenir'
+import wideSvg from '@/wide_svg'
 
 // Utils
 import ajax from 'vuejs-ajax'
@@ -172,6 +173,7 @@ export default {
         logoStartY: 5,
         logoWidth: 380,
         rightOffset: 390,
+        svgRaw: wideSvg,
         textDrop: 110,
         textOffset: 10,
         large: {
