@@ -84,7 +84,7 @@ const wideSvg = `<?xml version="1.0" encoding="utf-8"?>
         C331.2,16.7,330,17.9,328.5,18z"/>
     </g>
   </g>
-  <path d="m154.67 114.96h407.23" fill="none" stroke="#a6a8ab" stroke-linecap="round" stroke-miterlimit="10"/>
+  <path d="m154.67 114.96h407.23" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10"/>
   REPLACE_ME
 </svg>`
 export default wideSvg
