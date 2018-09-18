@@ -130,6 +130,9 @@ import HelpBox from '@/components/HelpBox'
 
 import avenir from '@/avenir'
 import wideSvg from '@/wide_svg'
+import wideSvgInverse from '@/wide_svg_inverse'
+import squareSvg from '@/square_svg'
+import squareSvgInverse from '@/square_svg_inverse'
 
 // Utils
 import ajax from 'vuejs-ajax'
@@ -164,6 +167,7 @@ export default {
         canvasWidth: 400,
         fontMax: 26,
         fontMin: 20,
+        fontCurSize: 26,
         lineOneDrop: 108,
         lineTwoCanvasHeight: 140,
         lineTwoDrop: 135,
@@ -174,6 +178,7 @@ export default {
         logoWidth: 380,
         rightOffset: 390,
         svgRaw: wideSvg,
+        svgRawInverse: wideSvgInverse,
         textDrop: 110,
         textOffset: 10,
         large: {
@@ -202,6 +207,8 @@ export default {
         logoStartX: 35,
         logoStartY: 10,
         logoWidth: 180,
+        svgRaw: squareSvg,
+        svgRawInverse: squareSvgInverse,
         textDrop: 235,
         textOffset: 125,
         large: {

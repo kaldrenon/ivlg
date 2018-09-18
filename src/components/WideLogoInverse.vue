@@ -35,12 +35,27 @@ export default {
       return 'InterVarsity Horizontal Logo_full_white_print.png'
     },
     svgData: function () {
-      var svg = this.svgRaw
-      var textTag = '<text fill="#FFF" stroke="none" font-family="Avenir" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
+      var svg = this.svgRawInverse
+      var textTag = ''
+      if (this.multiline) {
+        svg = svg.replace('width="400px" height="120px"', 'width="400px" height="160px"')
+        var lineOne = '<text fill="#fff" stroke="none" font-family="Avenir" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="108" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
+        var lineTwo = '<text fill="#fff" stroke="none" font-family="Avenir" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="135" text-anchor="start" dominant-baseline="alphabetic">' + this.secondLine.toUpperCase() + '</text>'
+        textTag = lineOne + lineTwo
+      } else {
+        textTag = '<text fill="#fff" stroke="none" font-family="Avenir" font-size="' + this.fontCurSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
+      }
       svg = svg.replace('REPLACE_ME', textTag)
       svg = svg.replace(/<defs\/>/, avenir)
       return svg
     },
+    // svgData: function () {
+    //   var svg = this.svgRawInverse
+    //   var textTag = '<text fill="#FFF" stroke="none" font-family="Avenir" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
+    //   svg = svg.replace('REPLACE_ME', textTag)
+    //   svg = svg.replace(/<defs\/>/, avenir)
+    //   return svg
+    // },
     svgName: function () {
       return 'InterVarsity Horizontal Logo_full_white.svg'
     },
@@ -108,7 +123,6 @@ export default {
         document.getElementById('school-name-field').classList.remove('error')
       }
 
-      this.svgData = ctxSvg.getSerializedSvg()
       this.redrawTextLarge()
 
       return this.textDrop
@@ -145,6 +159,7 @@ export default {
 
           metrics = ctx.measureText(text)
           if (metrics.width < this.large.logoWidth) {
+            this.fontCurSize = n
             ctx.fillText(text, this.large.textOffset, this.large.textDrop)
             break
           }

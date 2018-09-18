@@ -2,6 +2,7 @@ const wideSvgInverse = `<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   width="400px" height="120px" viewBox="0 0 400 120" style="enable-background:new 0 0 400 120;" xml:space="preserve">
+  <defs/>
 <style type="text/css">
   .st0{fill:#FFFFFF;}
   .st1{fill:none;stroke:#FFFFFF;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:10;}

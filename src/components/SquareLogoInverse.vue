@@ -10,6 +10,7 @@
 
 <script>
 import C2S from 'canvas2svg'
+import avenir from '@/avenir'
 
 export default {
   name: 'SquareLogoInverse',
@@ -17,7 +18,7 @@ export default {
     return this.config
   },
   props: [
-    'config', 'schoolName', 'shortName', 'svgData'
+    'config', 'schoolName', 'shortName'
   ],
   computed: {
     fileName: function () {
@@ -25,6 +26,13 @@ export default {
     },
     fileNameLarge: function () {
       return 'InterVarsity Vertical Logo_white_print.png'
+    },
+    svgData: function () {
+      var svg = this.svgRawInverse
+      var textTag = '<text fill="#fff" stroke="none" font-family="Avenir" font-size="20px" font-style="normal" font-weight="normal" text-decoration="normal" x="125" y="235" text-anchor="middle" dominant-baseline="alphabetic">' + this.shortName.toUpperCase() + '</text>'
+      svg = svg.replace('REPLACE_ME', textTag)
+      svg = svg.replace(/<defs\/>/, avenir)
+      return svg
     },
     svgName: function () {
       return 'InterVarsity Vertical Logo_white.svg'

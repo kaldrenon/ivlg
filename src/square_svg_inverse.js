@@ -2,6 +2,7 @@ const squareSvgInverse = `<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   width="250px" height="250px" viewBox="0 0 250 250" style="enable-background:new 0 0 250 250;" xml:space="preserve">
+  <defs/>
 <style type="text/css">
   .st0{fill:#FFFFFF;}
   .st1{fill:none;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
