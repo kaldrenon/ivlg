@@ -109,6 +109,7 @@ export default {
             metrics = ctx.measureText(text)
             if (metrics.width < this.logoWidth) {
               tooLong = false
+              this.fontCurSize = n
               ctx.fillText(text, this.textOffset, this.textDrop)
               break
             }
@@ -159,7 +160,6 @@ export default {
 
           metrics = ctx.measureText(text)
           if (metrics.width < this.large.logoWidth) {
-            this.fontCurSize = n
             ctx.fillText(text, this.large.textOffset, this.large.textDrop)
             break
           }
