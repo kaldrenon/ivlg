@@ -323,13 +323,13 @@ export default {
 }
 </script>
 
-            <style>
+<style>
 div#container {
   position: relative;
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', 'Futura', 'Century Gothic', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
