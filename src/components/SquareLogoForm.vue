@@ -29,7 +29,7 @@ export default {
     },
     svgData: function () {
       var svg = this.svgRaw
-      var textTag = '<text fill="#666" stroke="none" font-family="Avenir" font-size="20px" font-style="normal" font-weight="normal" text-decoration="normal" x="125" y="235" text-anchor="middle" dominant-baseline="alphabetic">' + this.shortName.toUpperCase() + '</text>'
+      var textTag = '<text fill="#666" stroke="none" font-family="Avenir" font-size="20px" font-style="normal" font-weight="normal" text-decoration="normal" x="125" y="235" text-anchor="middle" dominant-baseline="alphabetic">' + this.shortName.trim().toUpperCase() + '</text>'
       svg = svg.replace('REPLACE_ME', textTag)
       svg = svg.replace(/<defs\/>/, avenir)
       return svg
@@ -65,7 +65,7 @@ export default {
 
         ctx.font = this.fontSize + 'px Avenir'
         ctx.textAlign = 'center'
-        ctx.fillText(this.shortName.toUpperCase(), this.textOffset, this.textDrop)
+        ctx.fillText(this.shortName.trim().toUpperCase(), this.textOffset, this.textDrop)
       }
 
       this.svgData = ctxSvg.getSerializedSvg()
@@ -82,7 +82,7 @@ export default {
 
       ctx.font = this.large.fontSize + 'px Avenir'
       ctx.textAlign = 'center'
-      ctx.fillText(this.shortName.toUpperCase(), this.large.textOffset, this.large.textDrop)
+      ctx.fillText(this.shortName.trim().toUpperCase(), this.large.textOffset, this.large.textDrop)
     }
   }
 }

@@ -29,7 +29,7 @@ export default {
     },
     svgData: function () {
       var svg = this.svgRawInverse
-      var textTag = '<text fill="#FFF" stroke="none" font-family="Avenir" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="390" y="110" text-anchor="end" dominant-baseline="alphabetic">' + this.shortName.toUpperCase() + '</text>'
+      var textTag = '<text fill="#FFF" stroke="none" font-family="Avenir" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="390" y="110" text-anchor="end" dominant-baseline="alphabetic">' + this.shortName.trim().toUpperCase() + '</text>'
       svg = svg.replace('REPLACE_ME', textTag)
       svg = svg.replace(/<defs\/>/, avenir)
       return svg
@@ -61,7 +61,7 @@ export default {
         ctx.fillStyle = 'white'
         ctx.font = this.fontMax + 'px Avenir'
         ctx.textAlign = 'right'
-        ctx.fillText(this.shortName.toUpperCase(), this.rightOffset, this.textDrop)
+        ctx.fillText(this.shortName.trim().toUpperCase(), this.rightOffset, this.textDrop)
       }
 
       this.svgData = ctxSvg.getSerializedSvg()
@@ -78,7 +78,7 @@ export default {
 
       ctx.font = this.large.fontMax + 'px Avenir'
       ctx.textAlign = 'right'
-      ctx.fillText(this.shortName.toUpperCase(), this.large.rightOffset, this.large.textDrop)
+      ctx.fillText(this.shortName.trim().toUpperCase(), this.large.rightOffset, this.large.textDrop)
     }
   }
 }

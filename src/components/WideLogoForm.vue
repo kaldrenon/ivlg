@@ -39,11 +39,11 @@ export default {
       var textTag = ''
       if (this.multiline) {
         svg = svg.replace('width="400px" height="120px"', 'width="400px" height="160px"')
-        var lineOne = '<text fill="#666" stroke="none" font-family="Avenir" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="108" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
-        var lineTwo = '<text fill="#666" stroke="none" font-family="Avenir" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="135" text-anchor="start" dominant-baseline="alphabetic">' + this.secondLine.toUpperCase() + '</text>'
+        var lineOne = '<text fill="#666" stroke="none" font-family="Avenir" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="108" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
+        var lineTwo = '<text fill="#666" stroke="none" font-family="Avenir" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="135" text-anchor="start" dominant-baseline="alphabetic">' + this.secondLine.trim().toUpperCase() + '</text>'
         textTag = lineOne + lineTwo
       } else {
-        textTag = '<text fill="#666" stroke="none" font-family="Avenir" font-size="' + this.fontCurSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
+        textTag = '<text fill="#666" stroke="none" font-family="Avenir" font-size="' + this.fontCurSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
       }
       svg = svg.replace('REPLACE_ME', textTag)
       svg = svg.replace(/<defs\/>/, avenir)
@@ -68,7 +68,7 @@ export default {
       var canvas = document.getElementById('cnv-logo-wide-full')
       var context = canvas.getContext('2d')
       var ctxSvg = new C2S(canvas.width, canvas.height)
-      var text = this.schoolName.toUpperCase()
+      var text = this.schoolName.trim().toUpperCase()
       var tooLong = true
       var metrics
 
@@ -84,7 +84,7 @@ export default {
         ctx.fillStyle = '#666'
 
         if (this.multiline) {
-          var textTwo = this.secondLine.toUpperCase()
+          var textTwo = this.secondLine.trim().toUpperCase()
           ctx.font = this.lineTwoFontSize + 'px Avenir'
           metrics = ctx.measureText(text)
           var metricsTwo = ctx.measureText(textTwo)
@@ -123,7 +123,7 @@ export default {
     redrawTextLarge () {
       var canvas = document.getElementById('cnv-logo-wide-full-large')
       var ctx = canvas.getContext('2d')
-      var text = this.schoolName.toUpperCase()
+      var text = this.schoolName.trim().toUpperCase()
       var metrics
 
       ctx.clearRect(0, 0, this.large.canvasWidth, this.currentCanvasHeight * 3.125)
@@ -136,7 +136,7 @@ export default {
       ctx.fillStyle = '#666'
 
       if (this.multiline) {
-        var textTwo = this.secondLine.toUpperCase()
+        var textTwo = this.secondLine.trim().toUpperCase()
         ctx.font = this.large.lineTwoFontSize + 'px Avenir'
         metrics = ctx.measureText(text)
         var metricsTwo = ctx.measureText(textTwo)
