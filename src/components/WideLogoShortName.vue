@@ -54,12 +54,14 @@ export default {
       var context = canvas.getContext('2d')
       var ctxSvg = new C2S(canvas.width, canvas.height)
       var img = document.getElementById('image-holder-wide')
+      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
+
       for (let ctx of [context, ctxSvg]) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
         ctx.fillStyle = '#666'
 
-        this.wrapText(ctx, this.shortName.trim().toUpperCase(), this.rightOffset, this.textDrop, 700, '27px', 'Avenir')
+        this.wrapText(ctx, this.shortName.trim().toUpperCase(), this.rightOffset, this.textDrop, 700, '27px', fontList)
       }
 
       this.svgData = ctxSvg.getSerializedSvg()
@@ -75,12 +77,13 @@ export default {
       var canvas = document.getElementById('cnv-logo-wide-short-large')
       var ctx = canvas.getContext('2d')
       var img = document.getElementById('image-holder-wide')
+      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.drawImage(img, this.large.logoStartX, this.large.logoStartY, this.large.logoWidth, this.large.logoHeight)
       ctx.fillStyle = '#666'
 
-      ctx.font = this.large.fontMax + 'px Avenir'
+      ctx.font = this.large.fontMax + 'px ' + fontList
       ctx.textAlign = 'right'
       ctx.fillText(this.shortName.trim().toUpperCase(), this.large.rightOffset, this.large.textDrop)
     }

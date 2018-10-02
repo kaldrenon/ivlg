@@ -54,13 +54,14 @@ export default {
       var context = canvas.getContext('2d')
       var ctxSvg = new C2S(canvas.width, canvas.height)
       var img = document.getElementById('image-holder-square-inverse')
+      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
 
       for (let ctx of [context, ctxSvg]) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, this.logoStartX, this.logoStartY, this.logoWidth, this.logoHeight)
         ctx.fillStyle = 'white'
 
-        ctx.font = this.fontSize + 'px Avenir'
+        ctx.font = this.fontSize + 'px ' + fontList
         ctx.textAlign = 'center'
         ctx.fillText(this.shortName.trim().toUpperCase(), this.textOffset, this.textDrop)
       }
@@ -71,12 +72,13 @@ export default {
       var canvas = document.getElementById('cnv-logo-square-inverse-large')
       var ctx = canvas.getContext('2d')
       var img = document.getElementById('image-holder-square-inverse')
+      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.drawImage(img, this.large.logoStartX, this.large.logoStartY, this.large.logoWidth, this.large.logoHeight)
       ctx.fillStyle = 'white'
 
-      ctx.font = this.large.fontSize + 'px Avenir'
+      ctx.font = this.large.fontSize + 'px ' + fontList
       ctx.textAlign = 'center'
       ctx.fillText(this.shortName.trim().toUpperCase(), this.large.textOffset, this.large.textDrop)
     }

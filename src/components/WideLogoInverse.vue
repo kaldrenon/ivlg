@@ -78,6 +78,7 @@ export default {
       var text = this.schoolName.trim().toUpperCase()
       var tooLong = true
       var metrics
+      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
 
       for (let ctx of [context, ctxSvg]) {
         // Clear the canvas and draw the base logo
@@ -92,7 +93,7 @@ export default {
 
         if (this.multiline) {
           var textTwo = this.secondLine.trim().toUpperCase()
-          ctx.font = this.lineTwoFontSize + 'px Avenir'
+          ctx.font = this.lineTwoFontSize + 'px ' + fontList
           metrics = ctx.measureText(text)
           var metricsTwo = ctx.measureText(textTwo)
 
@@ -104,7 +105,7 @@ export default {
         } else {
           // Step down permissible font sizes; if the text fits, draw and break
           for (var n = this.fontMax; n >= this.fontMin; n--) {
-            ctx.font = n + 'px Avenir'
+            ctx.font = n + 'px ' + fontList
 
             metrics = ctx.measureText(text)
             if (metrics.width < this.logoWidth) {
@@ -133,6 +134,7 @@ export default {
       var ctx = canvas.getContext('2d')
       var text = this.schoolName.trim().toUpperCase()
       var metrics
+      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
 
       ctx.clearRect(0, 0, this.large.canvasWidth, this.currentCanvasHeight * 3.125)
       ctx.drawImage(
@@ -156,7 +158,7 @@ export default {
       } else {
         // Step down permissible font sizes; if the text fits, draw and break
         for (var n = this.large.fontMax; n >= this.large.fontMin; n--) {
-          ctx.font = n + 'px Avenir'
+          ctx.font = n + 'px ' + fontList
 
           metrics = ctx.measureText(text)
           if (metrics.width < this.large.logoWidth) {
