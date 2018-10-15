@@ -277,10 +277,11 @@ export default {
           zip.file(child.fileNameLarge, child.imageDataLarge, { base64: true })
         }
 
-        if (child.svgName) {
-          var fullSvg = child.svgData.replace(/<defs\/>/, avenir)
-          zip.file(child.svgName, fullSvg)
-        }
+        // Temporarily disable SVG saving in prod
+        // if (child.svgName) {
+        //   var fullSvg = child.svgData.replace(/<defs\/>/, avenir)
+        //   zip.file(child.svgName, fullSvg)
+        // }
       }
       zip.generateAsync({ type: 'base64' }).then(function (content) {
         var url = 'https://rta8nroxoc.execute-api.us-east-1.amazonaws.com/default/FileUpload?uuid=' + submissionInfo.uuid
