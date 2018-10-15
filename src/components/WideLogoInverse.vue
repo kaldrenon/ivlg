@@ -39,11 +39,11 @@ export default {
       var textTag = ''
       if (this.multiline) {
         svg = svg.replace('width="400px" height="120px"', 'width="400px" height="160px"')
-        var lineOne = '<text fill="#fff" stroke="none" font-family="Avenir" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="108" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
-        var lineTwo = '<text fill="#fff" stroke="none" font-family="Avenir" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="135" text-anchor="start" dominant-baseline="alphabetic">' + this.secondLine.trim().toUpperCase() + '</text>'
+        var lineOne = '<text fill="#fff" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="108" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
+        var lineTwo = '<text fill="#fff" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="135" text-anchor="start" dominant-baseline="alphabetic">' + this.secondLine.trim().toUpperCase() + '</text>'
         textTag = lineOne + lineTwo
       } else {
-        textTag = '<text fill="#fff" stroke="none" font-family="Avenir" font-size="' + this.fontCurSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
+        textTag = '<text fill="#fff" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.fontCurSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
       }
       svg = svg.replace('REPLACE_ME', textTag)
       svg = svg.replace(/<defs\/>/, avenir)
@@ -51,7 +51,7 @@ export default {
     },
     // svgData: function () {
     //   var svg = this.svgRawInverse
-    //   var textTag = '<text fill="#FFF" stroke="none" font-family="Avenir" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
+    //   var textTag = '<text fill="#FFF" stroke="none" font-family="AvenirInterVarsity" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
     //   svg = svg.replace('REPLACE_ME', textTag)
     //   svg = svg.replace(/<defs\/>/, avenir)
     //   return svg
@@ -78,7 +78,7 @@ export default {
       var text = this.schoolName.trim().toUpperCase()
       var tooLong = true
       var metrics
-      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
+      var fontList = '"AvenirInterVarsity", Avenir, Helvetica, Arial, sans-serif'
 
       for (let ctx of [context, ctxSvg]) {
         // Clear the canvas and draw the base logo
@@ -134,7 +134,7 @@ export default {
       var ctx = canvas.getContext('2d')
       var text = this.schoolName.trim().toUpperCase()
       var metrics
-      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
+      var fontList = '"AvenirInterVarsity", Avenir, Helvetica, Arial, sans-serif'
 
       ctx.clearRect(0, 0, this.large.canvasWidth, this.currentCanvasHeight * 3.125)
       ctx.drawImage(
@@ -147,7 +147,7 @@ export default {
 
       if (this.multiline) {
         var textTwo = this.secondLine.trim().toUpperCase()
-        ctx.font = this.large.lineTwoFontSize + 'px Avenir'
+        ctx.font = this.large.lineTwoFontSize + 'px AvenirInterVarsity'
         metrics = ctx.measureText(text)
         var metricsTwo = ctx.measureText(textTwo)
 

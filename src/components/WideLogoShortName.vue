@@ -29,7 +29,7 @@ export default {
     },
     svgData: function () {
       var svg = this.svgRaw
-      var textTag = '<text fill="#666" stroke="none" font-family="Avenir" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="390" y="110" text-anchor="end" dominant-baseline="alphabetic">' + this.shortName.trim().toUpperCase() + '</text>'
+      var textTag = '<text fill="#666" stroke="none" font-family="AvenirInterVarsity" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="390" y="110" text-anchor="end" dominant-baseline="alphabetic">' + this.shortName.trim().toUpperCase() + '</text>'
       svg = svg.replace('REPLACE_ME', textTag)
       svg = svg.replace(/<defs\/>/, avenir)
       return svg
@@ -54,7 +54,7 @@ export default {
       var context = canvas.getContext('2d')
       var ctxSvg = new C2S(canvas.width, canvas.height)
       var img = document.getElementById('image-holder-wide')
-      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
+      var fontList = '"AvenirInterVarsity", Avenir, Helvetica, Arial, sans-serif'
 
       for (let ctx of [context, ctxSvg]) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -77,7 +77,7 @@ export default {
       var canvas = document.getElementById('cnv-logo-wide-short-large')
       var ctx = canvas.getContext('2d')
       var img = document.getElementById('image-holder-wide')
-      var fontList = '"Avenir", "Futura", "Century Gothic", Arial, Helvetica, sans-serif'
+      var fontList = '"AvenirInterVarsity", Avenir, Helvetica, Arial, sans-serif'
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.drawImage(img, this.large.logoStartX, this.large.logoStartY, this.large.logoWidth, this.large.logoHeight)

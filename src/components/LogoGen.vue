@@ -329,7 +329,7 @@ div#container {
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Avenir', 'Futura', 'Century Gothic', Helvetica, Arial, sans-serif;
+  font-family: 'AvenirInterVarsity', 'Futura', 'Century Gothic', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
