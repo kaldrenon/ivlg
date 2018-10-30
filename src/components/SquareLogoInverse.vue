@@ -39,10 +39,23 @@ export default {
       return 'InterVarsity Vertical Logo_white_print.png'
     },
     svgData: function () {
+      var pathOpts = {
+        x: this.config.textOffset,
+        y: this.config.textDrop,
+        anchor: 'center',
+        fontSize: this.fontSize,
+        attributes: {
+          fill: 'white',
+          stroke: 'none'
+        }
+      }
+      console.log(pathOpts)
+      console.log(textToSVG)
+
       var svg = this.svgRawInverse
-      var textTag = '<text fill="#fff" stroke="none" font-family="AvenirInterVarsity" font-size="20px" font-style="normal" font-weight="normal" text-decoration="normal" x="125" y="235" text-anchor="middle" dominant-baseline="alphabetic">' + this.shortName.trim().toUpperCase() + '</text>'
+      var textTag = textToSVG.getPath(this.shortName.trim().toUpperCase(), pathOpts)
+
       svg = svg.replace('REPLACE_ME', textTag)
-      svg = svg.replace(/<defs\/>/, avenir)
       return svg
     },
     svgName: function () {

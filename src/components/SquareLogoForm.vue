@@ -12,15 +12,15 @@
 import C2S from 'canvas2svg'
 import avenir from '@/avenir'
 
-const texttosvg = require('text-to-svg')
-var texttosvg = null
-texttosvg.load('../assets/avenirltstd-light.otf', function (err, ttsobj) {
+const TextToSVG = require('text-to-svg')
+var textToSVG = null
+TextToSVG.load('../assets/AvenirLTStd-Light.otf', function (err, ttsObj) {
   if (err) {
     console.error(err)
   }
 
-  console.log(ttsobj)
-  texttosvg = ttsobj
+  console.log(ttsObj)
+  textToSVG = ttsObj
 })
 
 export default {
@@ -39,10 +39,23 @@ export default {
       return 'InterVarsity Vertical Logo_print.png'
     },
     svgData: function () {
+      var pathOpts = {
+        x: this.config.textOffset,
+        y: this.config.textDrop,
+        fontSize: this.fontSize,
+        anchor: 'center',
+        attributes: {
+          fill: '#666',
+          stroke: 'none'
+        }
+      }
+      console.log(pathOpts)
+      console.log(textToSVG)
+
       var svg = this.svgRaw
-      var textTag = '<text fill="#666" stroke="none" font-family="AvenirInterVarsity" font-size="20px" font-style="normal" font-weight="normal" text-decoration="normal" x="125" y="235" text-anchor="middle" dominant-baseline="alphabetic">' + this.shortName.trim().toUpperCase() + '</text>'
+      var textTag = textToSVG.getPath(this.shortName.trim().toUpperCase(), pathOpts)
+
       svg = svg.replace('REPLACE_ME', textTag)
-      svg = svg.replace(/<defs\/>/, avenir)
       return svg
     },
     svgName: function () {

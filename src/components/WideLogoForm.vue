@@ -61,15 +61,19 @@ export default {
       var svg = this.svgRaw
       var textTag = ''
       if (this.multiline) {
-        svg = svg.replace('width="400px" height="120px"', 'width="400px" height="160px"')
-        var lineOne = '<text fill="#666" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="108" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
-        var lineTwo = '<text fill="#666" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="135" text-anchor="start" dominant-baseline="alphabetic">' + this.secondLine.trim().toUpperCase() + '</text>'
+        svg = svg.replace('width="400px" height="120" viewBox="0 0 400 120"', 'width="400px" height="140" viewBox="0 0 400 140"')
+
+        // Update specs for multiline
+        pathOpts.fontSize = this.lineTwoFontSize
+        var lineOne = textToSVG.getPath(this.schoolName.trim().toUpperCase(), pathOpts)
+
+        pathOpts.y = this.config.lineTwoDrop
+        var lineTwo = textToSVG.getPath(this.secondLine.trim().toUpperCase(), pathOpts)
         textTag = lineOne + lineTwo
       } else {
         textTag = textToSVG.getPath(this.schoolName.trim().toUpperCase(), pathOpts)
       }
       svg = svg.replace('REPLACE_ME', textTag)
-      svg = svg.replace(/<defs\/>/, avenir)
       return svg
     },
     svgName: function () {

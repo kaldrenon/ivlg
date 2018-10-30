@@ -46,27 +46,36 @@ export default {
       return 'InterVarsity Horizontal Logo_full_white_print.png'
     },
     svgData: function () {
+      var pathOpts = {
+        x: this.config.textOffset,
+        y: this.config.lineOneDrop,
+        fontSize: this.fontCurSize,
+        attributes: {
+          fill: 'white',
+          stroke: 'none'
+        }
+      }
+      console.log(pathOpts)
+      console.log(textToSVG)
+
       var svg = this.svgRawInverse
       var textTag = ''
       if (this.multiline) {
-        svg = svg.replace('width="400px" height="120px"', 'width="400px" height="160px"')
-        var lineOne = '<text fill="#fff" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="108" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
-        var lineTwo = '<text fill="#fff" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="135" text-anchor="start" dominant-baseline="alphabetic">' + this.secondLine.trim().toUpperCase() + '</text>'
+        svg = svg.replace('width="400px" height="120" viewBox="0 0 400 120"', 'width="400px" height="140" viewBox="0 0 400 140"')
+
+        // Update specs for multiline
+        pathOpts.fontSize = this.lineTwoFontSize
+        var lineOne = textToSVG.getPath(this.schoolName.trim().toUpperCase(), pathOpts)
+
+        pathOpts.y = this.config.lineTwoDrop
+        var lineTwo = textToSVG.getPath(this.secondLine.trim().toUpperCase(), pathOpts)
         textTag = lineOne + lineTwo
       } else {
-        textTag = '<text fill="#fff" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.fontCurSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
+        textTag = textToSVG.getPath(this.schoolName.trim().toUpperCase(), pathOpts)
       }
       svg = svg.replace('REPLACE_ME', textTag)
-      svg = svg.replace(/<defs\/>/, avenir)
       return svg
     },
-    // svgData: function () {
-    //   var svg = this.svgRawInverse
-    //   var textTag = '<text fill="#FFF" stroke="none" font-family="AvenirInterVarsity" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.toUpperCase() + '</text>'
-    //   svg = svg.replace('REPLACE_ME', textTag)
-    //   svg = svg.replace(/<defs\/>/, avenir)
-    //   return svg
-    // },
     svgName: function () {
       return 'InterVarsity Horizontal Logo_full_white.svg'
     },

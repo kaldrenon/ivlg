@@ -39,10 +39,23 @@ export default {
       return 'InterVarsity Horizontal Logo_abbrev_white_print.png'
     },
     svgData: function () {
+      var pathOpts = {
+        x: this.config.rightOffset,
+        y: this.config.lineOneDrop,
+        anchor: 'right',
+        fontSize: this.fontCurSize,
+        attributes: {
+          fill: 'white',
+          stroke: 'none'
+        }
+      }
+      console.log(pathOpts)
+      console.log(textToSVG)
+
       var svg = this.svgRawInverse
-      var textTag = '<text fill="#FFF" stroke="none" font-family="AvenirInterVarsity" font-size="26px" font-style="normal" font-weight="normal" text-decoration="normal" x="390" y="110" text-anchor="end" dominant-baseline="alphabetic">' + this.shortName.trim().toUpperCase() + '</text>'
+      var textTag = textToSVG.getPath(this.shortName.trim().toUpperCase(), pathOpts)
+
       svg = svg.replace('REPLACE_ME', textTag)
-      svg = svg.replace(/<defs\/>/, avenir)
       return svg
     },
     svgName: function () {
