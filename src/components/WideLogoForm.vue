@@ -12,6 +12,17 @@
 import C2S from 'canvas2svg'
 import avenir from '@/avenir'
 
+const TextToSVG = require('text-to-svg')
+var textToSVG = null
+TextToSVG.load('../assets/AvenirLTStd-Light.otf', function (err, ttsObj) {
+  if (err) {
+    console.error(err)
+  }
+
+  console.log(ttsObj)
+  textToSVG = ttsObj
+})
+
 export default {
   name: 'WideLogoForm',
   data () {
@@ -35,6 +46,18 @@ export default {
       return 'InterVarsity Horizontal Logo_full_print.png'
     },
     svgData: function () {
+      var pathOpts = {
+        x: this.config.textOffset,
+        y: this.config.lineOneDrop,
+        fontSize: this.fontCurSize,
+        attributes: {
+          fill: '#666',
+          stroke: 'none'
+        }
+      }
+      console.log(pathOpts)
+      console.log(textToSVG)
+
       var svg = this.svgRaw
       var textTag = ''
       if (this.multiline) {
@@ -43,7 +66,7 @@ export default {
         var lineTwo = '<text fill="#666" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.lineTwoFontSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="135" text-anchor="start" dominant-baseline="alphabetic">' + this.secondLine.trim().toUpperCase() + '</text>'
         textTag = lineOne + lineTwo
       } else {
-        textTag = '<text fill="#666" stroke="none" font-family="AvenirInterVarsity" font-size="' + this.fontCurSize + 'px" font-style="normal" font-weight="normal" text-decoration="normal" x="10" y="110" text-anchor="start" dominant-baseline="alphabetic">' + this.schoolName.trim().toUpperCase() + '</text>'
+        textTag = textToSVG.getPath(this.schoolName.trim().toUpperCase(), pathOpts)
       }
       svg = svg.replace('REPLACE_ME', textTag)
       svg = svg.replace(/<defs\/>/, avenir)
