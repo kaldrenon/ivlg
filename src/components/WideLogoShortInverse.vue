@@ -10,7 +10,6 @@
 
 <script>
 import C2S from 'canvas2svg'
-import avenir from '@/avenir'
 
 const TextToSVG = require('text-to-svg')
 var textToSVG = null
