@@ -12,6 +12,17 @@
 import C2S from 'canvas2svg'
 import avenir from '@/avenir'
 
+const texttosvg = require('text-to-svg')
+var texttosvg = null
+texttosvg.load('../assets/avenirltstd-light.otf', function (err, ttsobj) {
+  if (err) {
+    console.error(err)
+  }
+
+  console.log(ttsobj)
+  texttosvg = ttsobj
+})
+
 export default {
   name: 'SquareLogoForm',
   data () {

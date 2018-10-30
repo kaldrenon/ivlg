@@ -12,6 +12,17 @@
 import C2S from 'canvas2svg'
 import avenir from '@/avenir'
 
+const TextToSVG = require('text-to-svg')
+var textToSVG = null
+TextToSVG.load('../assets/AvenirLTStd-Light.otf', function (err, ttsObj) {
+  if (err) {
+    console.error(err)
+  }
+
+  console.log(ttsObj)
+  textToSVG = ttsObj
+})
+
 export default {
   name: 'SquareLogoInverse',
   data () {
