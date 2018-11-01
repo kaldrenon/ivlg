@@ -89,7 +89,6 @@ export default {
         ctx.fillText(this.shortName.trim().toUpperCase(), this.rightOffset, this.textDrop)
       }
 
-      this.svgData = ctxSvg.getSerializedSvg()
       this.redrawTextLarge()
     },
     redrawTextLarge () {

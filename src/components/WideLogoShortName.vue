@@ -87,7 +87,6 @@ export default {
         this.wrapText(ctx, this.shortName.trim().toUpperCase(), this.rightOffset, this.textDrop, 700, '27px', fontList)
       }
 
-      this.svgData = ctxSvg.getSerializedSvg()
       this.redrawTextLarge()
     },
     wrapText (context, text, x, y, maxWidth, fontSize, fontFace) {
