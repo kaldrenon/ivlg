@@ -6,6 +6,7 @@ const path = require('path')
 
 module.exports = {
   dev: {
+    mode: 'development',
 
     // Paths
     assetsPublicPath: '/',
