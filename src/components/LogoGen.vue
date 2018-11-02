@@ -138,7 +138,7 @@ import squareSvgInverse from '@/square_svg_inverse'
 import ajax from 'vuejs-ajax'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver/FileSaver'
-const uuidv4 = require('uuid/v4')
+var uuidv4 = require('uuid/v4')
 
 Vue.use(ajax)
 
