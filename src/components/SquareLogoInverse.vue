@@ -13,7 +13,7 @@ import C2S from 'canvas2svg'
 
 var TextToSVG = require('text-to-svg')
 var textToSVG = null
-TextToSVG.load('../assets/AvenirLTStd-Light.otf', function (err, ttsObj) {
+TextToSVG.load('../assets/AvenirLTPro-Light.ttf', function (err, ttsObj) {
   if (err) {
     console.error(err)
   }
